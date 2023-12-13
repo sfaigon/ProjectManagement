@@ -2,7 +2,7 @@
 
 Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
 
-Clone the mern-infrastructure repo: git clone <url of mern-infrastructure> <name-of-project>
+<p>Clone the mern-infrastructure repo: git clone <url of mern-infrastructure> <name-of-project>
 Note that the folder created will be same as <name-of-project> instead of mern-infrastructure
 
 cd <name-of-project>
@@ -22,3 +22,4 @@ Update the remote’s URL: git remote set-url origin <paste the copied GH url>
 Make the initial commit: git add -A && git commit -m "Initial commit"
 
 Push for the first time: git push -u origin main
+</p>
