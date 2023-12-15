@@ -1,3 +1,5 @@
+import ProjectItem from "../../components/ProjectItem/ProjectItem";
+
 export default function ProjectListPage() {
   return (
     <>
