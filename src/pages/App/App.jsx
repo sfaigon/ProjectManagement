@@ -4,6 +4,7 @@ import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import NavBar from "../../components/NavBar/NavBar";
+import TaskPage from "../TaskPage/TaskPage";
 import ProjectListPage from "../ProjectListPage/ProjectListPage";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
               path="/projects"
               element={<ProjectListPage user={user} setUser={setUser} />}
             />
+            <Route path="/tasks" element={<TaskPage />} />
           </Routes>
         </>
       ) : (
