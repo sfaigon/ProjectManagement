@@ -7,7 +7,11 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const projects = await Project.find({}).sort("name").populate().exec();
+  const projects = await Project.find({})
+    .sort("teamMambers")
+    .populate("tasks")
+    .populate("comments")
+    .exec();
   projects.sort((a, b) => a.dateCreated.sortOrder - b.dateCreated.sortOrder);
   res.json(projects);
 }
@@ -18,10 +22,14 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
-  const { project: projectText, name } = req.body;
-  const project = new Project({
-    name: projectText,
-    dateCreated: Date,
-    teamMembers: [],
-  });
+  try {
+    const { project: projectText, name } = req.body;
+    const project = new Project({
+      name: projectText,
+      dateCreated: Date,
+      teamMembers: [],
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }

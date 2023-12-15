@@ -58,3 +58,5 @@ const ProjectForm = ({ onsubmit }) => {
     </form>
   );
 };
+
+export default ProjectForm;
