@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("./user");
 const Schema = mongoose.Schema;
+const Project = require("./Project");
 
 const commentSchema = new Schema(
   {
@@ -9,6 +10,10 @@ const commentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: User,
     },
+    project: {
+        type: Schema.Types.ObjectId,
+        ref: Project
+    }
   },
   {
     timestamps: true,
