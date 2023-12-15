@@ -16,10 +16,10 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
-    try {
-        const allComments = await Comment.find({project: req.body.project});
-        res.json(allComments);
-    } catch (err) {
-        console.log(error);
-    }
+  try {
+    const allComments = await Comment.find({ project: req.body.project });
+    res.json(allComments);
+  } catch (err) {
+    console.log(err);
+  }
 }
