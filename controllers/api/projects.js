@@ -7,11 +7,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-  const projects = await Project.find({})
-    .sort("teamMambers")
-    .populate("tasks")
-    .populate("comments")
-    .exec();
+  const projects = await Project.find({});
   projects.sort((a, b) => a.dateCreated.sortOrder - b.dateCreated.sortOrder);
   res.json(projects);
 }
@@ -23,13 +19,18 @@ async function show(req, res) {
 
 async function create(req, res) {
   try {
-    const { project: projectText, name } = req.body;
+    const { name, dateCreated } = req.body;
     const project = new Project({
-      name: projectText,
-      dateCreated: Date,
+      name,
+      dateCreated,
       teamMembers: [],
     });
+    await project.save();
+    return res.json(project);
   } catch (err) {
     console.log(err);
+    return res.status(400).send({
+      message: "Validation failed",
+    });
   }
 }

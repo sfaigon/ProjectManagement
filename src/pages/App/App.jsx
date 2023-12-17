@@ -6,6 +6,7 @@ import AuthPage from "../AuthPage/AuthPage";
 import NavBar from "../../components/NavBar/NavBar";
 import TaskPage from "../TaskPage/TaskPage";
 import ProjectListPage from "../ProjectListPage/ProjectListPage";
+import ProjectCreatePage from "../ProjectCreatePage/ProjectCreatePage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -17,10 +18,8 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route
-              path="/projects"
-              element={<ProjectListPage user={user} setUser={setUser} />}
-            />
+            <Route path="/projects/create" element={<ProjectCreatePage />} />
+            <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/tasks" element={<TaskPage />} />
           </Routes>
         </>

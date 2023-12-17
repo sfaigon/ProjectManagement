@@ -18,6 +18,7 @@ const ProjectForm = ({ onsubmit }) => {
   };
 
   const handleSubmit = (e) => {
+    console.log("submitting");
     e.preventDefault();
     onsubmit(formData);
 
@@ -55,6 +56,7 @@ const ProjectForm = ({ onsubmit }) => {
         value={formData.teamMembers}
         onChange={handleChange}
       />
+      <button type="submit">Create</button>
     </form>
   );
 };
