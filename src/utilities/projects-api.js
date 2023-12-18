@@ -10,5 +10,5 @@ export async function getAll() {
 }
 
 export async function getOne(projectData) {
-  return sendRequest(BASE_URL, "GET", projectData);
+  return sendRequest(`${BASE_URL}/${projectData}`, "GET");
 }
