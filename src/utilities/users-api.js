@@ -12,3 +12,8 @@ export async function login(credentials) {
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
+
+export async function getAll() {
+  return sendRequest(BASE_URL);
+}
+
