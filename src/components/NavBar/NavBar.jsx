@@ -12,7 +12,7 @@ export default function NavBar({ user, setUser }) {
       <Link to="/projects">Projects</Link>
       &nbsp; | &nbsp;
       <Link to="/tasks">Tasks</Link>
-      &nbsp;&nbsp;
+      &nbsp; | &nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;
       <Link to="" onClick={handleLogOut}>
