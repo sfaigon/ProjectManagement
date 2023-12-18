@@ -1,5 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const tasksCtrl = require('../../controllers/api/tasks');
+const tasksCtrl = require("../../controllers/api/tasks");
 
-router.get('/', tasksCtrl.create);
+router.get("/", tasksCtrl.create);
+
+module.exports = router;
