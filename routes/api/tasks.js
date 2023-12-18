@@ -4,5 +4,6 @@ const tasksCtrl = require("../../controllers/api/tasks");
 
 router.post("/", tasksCtrl.create);
 router.get("/", tasksCtrl.index);
+router.get("/:id", tasksCtrl.show);
 
 module.exports = router;
