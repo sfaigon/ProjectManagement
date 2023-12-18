@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
-    taskId: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
     title: {
       type: String,
       required: true,
@@ -22,10 +17,6 @@ const taskSchema = new Schema({
     },
     description: {
       type: String,
-      required: true,
-    },
-    managerId: {
-      type: Number,
       required: true,
     },
     stage: {
