@@ -7,8 +7,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import TaskPage from "../TaskPage/TaskPage";
 import ProjectListPage from "../ProjectListPage/ProjectListPage";
 import ProjectCreatePage from "../ProjectCreatePage/ProjectCreatePage";
-import UserListPage from "../UserListPage/UsersListPage"
+import UserListPage from "../UserListPage/UsersListPage";
 import WelcomePage from "../WelcomePage/WelcomePage";
+import ProjectShowPage from "../ProjectShowPage/ProjectShowPage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -21,6 +22,7 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/" element={<WelcomePage />} />
+            <Route path="/projects/:id" element={<ProjectShowPage />} />
             <Route path="/projects/create" element={<ProjectCreatePage />} />
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/tasks" element={<TaskPage />} />
