@@ -5,6 +5,10 @@ import TaskForm from "../../components/TaskForm/TaskForm";
 export default function TaskPage() {
     const [tasks, setTasks] = useState([]);
 
+    function addTask(newTask) {
+        setTasks([...tasks, newTask]);
+    }
+
     useEffect(function() {
         async function getTasks() {
             const tasks = await tasksAPI.getAll();
@@ -13,21 +17,14 @@ export default function TaskPage() {
         getTasks();
     }, []);  
 
-    const handleTaskSubmit = async (formData) => {
-        // Assuming you have a createTask function in tasksAPI
-        await tasksAPI.createTask(formData);
-        // After submitting, fetch the updated list of tasks
-        const updatedTasks = await tasksAPI.getAll();
-        setTasks(updatedTasks);
-      };
 
     return (
     <>
         <h1>My Tasks</h1>
-        < TaskForm onSubmit={handleTaskSubmit} /> 
+        < TaskForm /> 
         <ul>
-            {tasks.map((task) => (
-                <li key={task._id}>
+            {tasks.map((task, index) => (
+                <li key={index}>
                     <strong>{task.title}</strong>
                     <br />
                     <span>{task.description}</span>

@@ -6,13 +6,10 @@ module.exports = {
   };
 
 async function index(req,res) {
-    try {
-        const tasks = await Task.find({});
-        res.render('/tasks', { tasks });
-    } catch (error) {
-        console.error('Error fetching tasks:', error);
+      const tasks = await Task.find({});
+      res.json(tasks);
 }
-};
+  
 
 async function create(req, res) {
     try {
