@@ -3,12 +3,11 @@ import { useLocation } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
 
 export default function ProjectShowPage() {
-  const location=useLocation();
+  const location = useLocation();
   const projectId = location.pathname.slice(10);
-  console.log(projectId)
+  console.log(projectId);
 
-
-  const [showProject, setShowProject] = useState(null);
+  const [showProject, setShowProject] = useState([]);
   useEffect(function () {
     async function showProject() {
       const project = await projectsAPI.getOne(projectId);
@@ -19,7 +18,7 @@ export default function ProjectShowPage() {
   return (
     <>
       <h1>Project Show page</h1>
-      {/* <h1>{showProject.name}</h1> */}
+      <h1>{showProject.name}</h1>
     </>
   );
 }
