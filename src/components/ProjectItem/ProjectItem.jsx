@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function ProjectItem({ project, idx }) {
   return (
     <>
-      <li>{project.name}</li>
+      <Link to={`/projects/${project._id}`}>
+        <li>{project.name}</li>
+      </Link>
     </>
   );
 }

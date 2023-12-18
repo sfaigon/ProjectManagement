@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 export default function ProjectListPage() {
   const [projects, setProjects] = useState([]);
-  const [showProjects, setShowProjects] = useState(true);
 
   function addProject(newProject) {
     setProjects([...projects, newProject]);
