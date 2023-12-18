@@ -3,7 +3,7 @@ import * as tasksAPI from '../../utilities/tasks-api'
 import { useParams } from 'react-router-dom';
 
 export default function TaskDetailPage() {
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,14 +27,9 @@ export default function TaskDetailPage() {
         <>
         <h2>{task.title}</h2>
         <p><strong>Description:</strong> {task.description}</p>
-        <p><strong>Date Assigned:</strong> {formatDate(task.dateAssigned)}</p>
-        <p><strong>Deadline:</strong> {formatDate(task.deadline)}</p>
+        <p><strong>Date Assigned:</strong> {task.dateAssigned}</p>
+        <p><strong>Deadline:</strong> {task.deadline}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
         </>
     )
   }
-
-  function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-}
