@@ -11,3 +11,5 @@ const projectSchema = new Schema({
   tasks: [],
   comments: {},
 });
+
+module.exports = mongoose.model("Project", projectSchema);
