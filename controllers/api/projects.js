@@ -13,8 +13,10 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-  const project = await Project.findById(req.params.id);
-  res.json(project);
+  console.log("route triggered");
+  const projectId = await Project.findById(req.params.id);
+  console.log("Project ID:", projectId);
+  res.json(projectId);
 }
 
 async function create(req, res) {

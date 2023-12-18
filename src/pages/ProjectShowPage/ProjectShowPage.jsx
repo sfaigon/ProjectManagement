@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as projectsAPI from "../../utilities/projects-api";
 
-export default function ProjectShowPage({ project }) {
+export default function ProjectShowPage({ project, idx }) {
   const [showProject, setShowProject] = useState([]);
 
   useEffect(function () {

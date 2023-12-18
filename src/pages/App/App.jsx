@@ -19,10 +19,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             {/* Route components in here */}
-            <Route
-              path="/projects/${project.name}"
-              element={<ProjectShowPage />}
-            />
+            <Route path="/projects/:id" element={<ProjectShowPage />} />
             <Route path="/projects/create" element={<ProjectCreatePage />} />
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/tasks" element={<TaskPage />} />
