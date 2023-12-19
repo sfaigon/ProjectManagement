@@ -31,8 +31,9 @@ async function index(req,res) {
   
 
 async function create(req, res) {
+    console.log(req.body);
     try {
-        const task = await new Task(req.body);
+        const task = await Task.create(req.body);
         await task.save();
         return res.json(task);
     } catch (err) {
