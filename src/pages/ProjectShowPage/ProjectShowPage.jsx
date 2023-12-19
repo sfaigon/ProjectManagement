@@ -5,7 +5,6 @@ import * as projectsAPI from "../../utilities/projects-api";
 export default function ProjectShowPage() {
   const location = useLocation();
   const projectId = location.pathname.slice(10);
-  console.log(projectId);
 
   const [showProject, setShowProject] = useState([]);
   useEffect(function () {
