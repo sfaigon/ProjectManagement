@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
 
 export default function ProjectShowPage() {
   const location = useLocation();
   const projectId = location.pathname.slice(10);
-  console.log(projectId);
+  const navigate = useNavigate();
 
   const [showProject, setShowProject] = useState([]);
   useEffect(function () {
@@ -15,6 +15,19 @@ export default function ProjectShowPage() {
     }
     showProject();
   }, []);
+
+  const handleDelete = async () => {
+    try {
+      await projectsAPI.deleteProject(projectId);
+      navigate("/projects");
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
+  };
+
+  if (!projectId) {
+    return <p>No Project Info</p>;
+  }
 
   return (
     <>
@@ -36,6 +49,7 @@ export default function ProjectShowPage() {
       <Link to={`/projects/${projectId}/edit`}>
         <button>Update</button>
       </Link>
+      <button onClick={handleDelete}>Delete Project</button>
     </>
   );
 }

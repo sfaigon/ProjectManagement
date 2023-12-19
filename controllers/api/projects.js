@@ -6,6 +6,7 @@ module.exports = {
   create,
   update,
   edit,
+  delete: deleteProject,
 };
 
 async function index(req, res) {
@@ -74,6 +75,23 @@ async function edit(res, req) {
     res.json(project);
   } catch (err) {
     console.error("Error editing project:", err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+async function deleteProject(req, res) {
+  try {
+    const projectId = req.params.id;
+
+    const deletedProject = await Project.findByIdAndDelete(projectId);
+
+    if (!deletedProject) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    res.json({ message: "Project deleted successfully", deletedProject });
+  } catch (err) {
+    console.error("Error deleting project:", err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }
