@@ -65,7 +65,6 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
           name="teamMembers"
           value={formData.teamMembers}
           onChange={handleInputChange}
-          required
         />
       </div>
       <div>
@@ -75,7 +74,6 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
           name="tasks"
           value={formData.tasks}
           onChange={handleInputChange}
-          required
         />
       </div>
       <div>
@@ -85,8 +83,10 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
           name="comments"
           value={formData.comments}
           onChange={handleInputChange}
-          required
         />
+      </div>
+      <div>
+        <button type="submit">Save Changes</button>
       </div>
     </form>
   );

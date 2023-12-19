@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import UpdateProjectForm from "../../components/UpdateProjectForm/UpdateProjectForm";
+import UpdateProjectForm from "../../components/ProjectUpdateForm/ProjectUpdateForm";
 import * as projectsAPI from "../../utilities/projects-api";
 
 export default function UpdateProjectPage() {
