@@ -6,8 +6,26 @@ module.exports = {
     show, 
     edit,
     update,
+    delete: deleteTask,
   };
   
+  async function deleteTask(req, res) {
+    try {
+      const taskId = req.params.id;
+
+      const deletedTask = await Task.findByIdAndDelete(taskId);
+
+      if (!deletedTask) {
+          return res.status(404).json({ message: 'Task not found' });
+      }
+
+      res.json({ message: 'Task deleted successfully', deletedTask });
+    } catch (err) {
+      console.error('Error deleting task:', err);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+
   async function update(req, res) {
     try {
       const taskId = req.params.id;
