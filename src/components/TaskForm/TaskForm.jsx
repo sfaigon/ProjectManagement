@@ -34,13 +34,13 @@ const TaskForm = ({ onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formattedFormData = {
+  const formattedFormData = {
       ...formData,
       dateAssigned: formatDate(formData.dateAssigned),
       deadline: formatDate(formData.deadline),
     };
 
-    const newTask = await tasksAPI.createTask(formattedFormData);
+  const newTask = await tasksAPI.createTask(formattedFormData);
     onSubmit(newTask);
 
     // Reset form fields after submission 
