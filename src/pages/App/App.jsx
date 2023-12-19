@@ -10,6 +10,7 @@ import ProjectCreatePage from "../ProjectCreatePage/ProjectCreatePage";
 import UserListPage from "../UserListPage/UsersListPage";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import ProjectShowPage from "../ProjectShowPage/ProjectShowPage";
+import TaskDetailPage from "../TaskDetailPage/TaskDetailPage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/tasks" element={<TaskPage />} />
             <Route path="/users" element={<UserListPage />} />
+            <Route path="/tasks/:id" element={<TaskDetailPage />} />
           </Routes>
         </>
       ) : (
