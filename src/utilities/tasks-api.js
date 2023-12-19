@@ -1,6 +1,10 @@
 import sendRequest from './send-request';
 const BASE_URL = '/api/tasks';
 
+export async function deleteTask(id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}
+
 export async function updateTask(id, updates) {
   return sendRequest(`${BASE_URL}/${id}`, 'PUT', updates);
 }
