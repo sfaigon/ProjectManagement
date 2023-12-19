@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import * as tasksAPI from "../../utilities/tasks-api";
 import TaskForm from "../../components/TaskForm/TaskForm";
+import { Link } from "react-router-dom";
 
 export default function TaskPage() {
     const [tasks, setTasks] = useState([]);
@@ -26,9 +27,9 @@ export default function TaskPage() {
         <ul>
             {tasks.map((task, index) => (
                 <li key={index}>
+                    <Link to={`/tasks/${task._id}`}>
                     <strong>{task.title}</strong>
-                    <br />
-                    <span>{task.description}</span>
+                    </Link>
                 </li>
             ))}
         </ul>

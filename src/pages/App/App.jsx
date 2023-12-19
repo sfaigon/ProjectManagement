@@ -10,6 +10,8 @@ import ProjectCreatePage from "../ProjectCreatePage/ProjectCreatePage";
 import UserListPage from "../UserListPage/UsersListPage";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import ProjectShowPage from "../ProjectShowPage/ProjectShowPage";
+import TaskDetailPage from "../TaskDetailPage/TaskDetailPage";
+import TaskEditPage from "../TaskEditPage/TaskEditPage";
 import UpdateProjectPage from "../UpdateProject/UpdateProject";
 
 export default function App() {
@@ -32,6 +34,8 @@ export default function App() {
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/tasks" element={<TaskPage />} />
             <Route path="/users" element={<UserListPage />} />
+            <Route path="/tasks/:id" element={<TaskDetailPage />} />
+            <Route path="/tasks/:id/edit" element={<TaskEditPage />} />
           </Routes>
         </>
       ) : (
