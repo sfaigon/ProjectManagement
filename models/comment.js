@@ -1,18 +1,17 @@
 const mongoose = require("mongoose");
-const User = require("./user");
+// const User = require("./user");
 const Schema = mongoose.Schema;
-const Project = require("./Project");
+// const Project = require("./Project");
 
 const commentSchema = new Schema(
   {
     text: { type: String, required: true },
     user: {
-      type: Schema.Types.ObjectId,
-      ref: User,
+      type: mongoose.Schema.Types.ObjectId,
+      
     },
     project: {
-        type: Schema.Types.ObjectId,
-        ref: Project
+        type: mongoose.Schema.Types.ObjectId,
     }
   },
   {
@@ -20,4 +19,4 @@ const commentSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("Note", noteSchema);
+module.exports = mongoose.model("Comment", commentSchema);

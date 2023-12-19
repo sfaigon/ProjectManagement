@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
+import * as commentsAPI from "../../utilities/comments-api";
+import CommentForm from "../../components/CommentForm/CommentForm";
 
-export default function ProjectShowPage() {
+export default function ProjectShowPage({ user }) {
   const location = useLocation();
   const projectId = location.pathname.slice(10);
   const navigate = useNavigate();
@@ -13,7 +15,22 @@ export default function ProjectShowPage() {
       const project = await projectsAPI.getOne(projectId);
       setShowProject(project);
     }
+
     showProject();
+  }, []);
+
+  const [comments, setComments] = useState([]);
+
+  function addComment(newComment) {
+    setComments([...comments, newComment]);
+  }
+
+  useEffect(function () {
+    async function getComments() {
+      const comments = await commentsAPI.getAll();
+      setComments(comments);
+    }
+    getComments();
   }, []);
 
   const handleDelete = async () => {
@@ -50,6 +67,20 @@ export default function ProjectShowPage() {
         <button>Update</button>
       </Link>
       <button onClick={handleDelete}>Delete Project</button>
+
+      <CommentForm user={user} projectId={showProject} onSubmit={addComment} />
+      <ul>
+        {comments.map(
+          (c) =>
+            showProject._id == c.project && (
+              <li>
+                <p>
+                  {c.text} : {c.user} : {c.project}
+                </p>
+              </li>
+            )
+        )}
+      </ul>
     </>
   );
 }
