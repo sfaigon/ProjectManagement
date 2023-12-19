@@ -19,7 +19,7 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const newComment = await commentsAPI.createComment(formData);
-    onSubmit(newComment);
+    onSubmit(formData);
 
     setFormData({
       text: "",

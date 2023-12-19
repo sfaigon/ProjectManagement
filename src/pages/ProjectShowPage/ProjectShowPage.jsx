@@ -4,7 +4,6 @@ import * as projectsAPI from "../../utilities/projects-api";
 import * as commentsAPI from "../../utilities/comments-api";
 import CommentForm from "../../components/CommentForm/CommentForm";
 
-
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
   const projectId = location.pathname.slice(10);
@@ -14,6 +13,7 @@ export default function ProjectShowPage({ user }) {
     async function showProject() {
       const project = await projectsAPI.getOne(projectId);
       setShowProject(project);
+      
     }
 
     showProject();
@@ -37,7 +37,7 @@ export default function ProjectShowPage({ user }) {
     <>
       <h1>Project Show page</h1>
       <h1>{showProject.name}</h1>
-
+      
       <CommentForm
         user={user}
         projectId={showProject._id}
