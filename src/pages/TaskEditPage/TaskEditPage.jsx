@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import TaskEditForm from '../../components/TaskEditForm/TaskEditForm';
+import * as tasksAPI from '../../utilities/tasks-api'
 
 const TaskEditPage = () => {
   const { id } = useParams();
@@ -9,7 +10,7 @@ const TaskEditPage = () => {
   useEffect(() => {
     async function getformDetails() {
         try {
-            const formDetails = await tasksAPI.getbyIf(id)
+            const formDetails = await tasksAPI.getById(id)
             setTask(formDetails);
         }catch (error) {
             console.error('Error fetching form details:', error);
