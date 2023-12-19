@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react';
 import * as tasksAPI from '../../utilities/tasks-api'
 import { useParams } from 'react-router-dom';
+import TaskEditForm from '../../components/TaskEditForm/TaskEditForm';
 
 export default function TaskDetailPage() {
   const [task, setTask] = useState([]);
   const { id } = useParams();
+  // const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     async function getTaskDetails() {
@@ -19,6 +21,12 @@ export default function TaskDetailPage() {
     getTaskDetails();
   }, [id]);
 
+  // const handleEdit = async (formData) => {
+  //   const updatedTask = await tasksAPI.getById(id);
+  //   setTask(updatedTask);
+  //   setIsEditing(false);
+  // };
+
   if (!task) {
     return <p>No Task Info</p>;
   }
@@ -30,6 +38,12 @@ export default function TaskDetailPage() {
         <p><strong>Date Assigned:</strong> {task.dateAssigned}</p>
         <p><strong>Deadline:</strong> {task.deadline}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
+
+        {/* {isEditing ? (
+          <TaskEditForm task={task} onSubmit={handleEdit} />
+         ) : (
+          <button onClick={() => setIsEditing(true)}>Edit Task</button>
+         )} */}
         </>
     )
   }

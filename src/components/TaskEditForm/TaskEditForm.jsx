@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const TaskEditForm = ({ task, onSubmit }) => {
     const [formData, setFormData] = useState({
       title: task.title,
@@ -68,7 +70,9 @@ const TaskEditForm = ({ task, onSubmit }) => {
         <option value="Done">Done</option>
         </select>
 
-        <button type="submit">Save Changes</button> 
+        <button onClick={handleEditSubmit}>Save Changes</button> 
         </form>
     )
 }
+
+export default TaskEditForm;
