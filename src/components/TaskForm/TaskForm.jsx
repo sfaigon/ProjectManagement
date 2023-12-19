@@ -24,11 +24,23 @@ const TaskForm = ({ onSubmit }) => {
     });
   };
 
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    return new Date(dateString).toLocaleDateString('en-GB', options);
+  };
+
   // Handles form submission
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newTask = await tasksAPI.createTask(formData)
+
+    const formattedFormData = {
+      ...formData,
+      dateAssigned: formatDate(formData.dateAssigned),
+      deadline: formatDate(formData.deadline),
+    };
+
+    const newTask = await tasksAPI.createTask(formattedFormData);
     onSubmit(newTask);
 
     // Reset form fields after submission 
@@ -37,7 +49,7 @@ const TaskForm = ({ onSubmit }) => {
         dateAssigned: defaultDate,
         deadline: defaultDate,
         description: '',
-        stage: 'In Progress',
+        stage: 'To Do',
     });
   };
 
