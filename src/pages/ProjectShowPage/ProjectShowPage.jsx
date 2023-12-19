@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
+import CommentForm from "../../components/CommentForm/CommentForm"
 
-export default function ProjectShowPage() {
+export default function ProjectShowPage({user}) {
   const location = useLocation();
   const projectId = location.pathname.slice(10);
 
@@ -14,10 +15,14 @@ export default function ProjectShowPage() {
     }
     showProject();
   }, []);
+
+
   return (
     <>
       <h1>Project Show page</h1>
       <h1>{showProject.name}</h1>
+
+      <CommentForm user={user} projectId={showProject._id} />
     </>
   );
 }

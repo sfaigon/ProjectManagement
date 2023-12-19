@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const defaultDate = new Date();
 
-const CommentForm = ({ onSubmit, projectId }) => {
+const CommentForm = ({ onSubmit, projectId, user}) => {
   const [formData, setFormData] = useState({
     text: "",
     dateCreated: defaultDate,
@@ -39,7 +39,10 @@ const CommentForm = ({ onSubmit, projectId }) => {
           onChange={handleChange}
           required
         />
+        <button>Leave Comment</button>
       </form>
     </>
   );
 };
+
+export default CommentForm;
