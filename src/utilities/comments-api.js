@@ -8,3 +8,16 @@ export async function createComment(commentData) {
 export async function getAll() {
   return sendRequest(BASE_URL);
 }
+
+export function getById(id) {
+  return sendRequest(`${BASE_URL}/${id}`, "GET");
+}
+
+
+export async function deleteComment(id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}
+
+export async function updateComment(id, updates) {
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', updates);
+}
