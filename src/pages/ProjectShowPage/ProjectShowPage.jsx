@@ -17,7 +17,7 @@ export default function ProjectShowPage({ user }) {
     }
 
     showProject();
-  }, []);
+  },[]);
 
   const [comments, setComments] = useState([]);
 
@@ -27,11 +27,13 @@ export default function ProjectShowPage({ user }) {
 
   useEffect(function () {
     async function getComments() {
-      const comments = await commentsAPI.getAll();
-      setComments(comments);
+        const comments = await commentsAPI.getAll();
+        setComments(comments);
+     
     }
     getComments();
   }, []);
+  
 
   return (
     <>
@@ -40,14 +42,18 @@ export default function ProjectShowPage({ user }) {
       
       <CommentForm
         user={user}
-        projectId={showProject._id}
+        projectId={showProject}
         onSubmit={addComment}
       />
       <ul>
         {comments.map((c) => (
+          showProject._id == c.project && 
+          (
           <li>
-            <p>{c.text} </p>
+            <p>{c.text} : {c.user} : {c.project}</p>
           </li>
+
+          )
         ))}
       </ul>
     </>

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import * as commentsAPI from "../../utilities/comments-api";
-const defaultDate = new Date();
 
 const CommentForm = ({ onSubmit, projectId, user }) => {
   const [formData, setFormData] = useState({
     text: "",
-    // dateCreated: defaultDate,
+    user: user._id,
+    project: projectId._id,
   });
 
   const handleChange = (evt) => {
@@ -13,19 +13,19 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
     setFormData({
       ...formData,
       [name]: value,
+      project: projectId._id,
     });
   };
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const newComment = await commentsAPI.createComment(formData);
-    onSubmit(formData);
+    onSubmit(newComment);
 
     setFormData({
       text: "",
-      // dateCreated: defaultDate,
       user: user._id,
-      project: projectId,
+      project: projectId._id,
     });
   };
 
