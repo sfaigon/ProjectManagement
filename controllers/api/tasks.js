@@ -3,9 +3,67 @@ const Task = require('../../models/task');
 module.exports = {
     create,
     index,
-    show
+    show, 
+    edit,
+    update,
+    delete: deleteTask,
+  };
+  
+  async function deleteTask(req, res) {
+    try {
+      const taskId = req.params.id;
+
+      const deletedTask = await Task.findByIdAndDelete(taskId);
+
+      if (!deletedTask) {
+          return res.status(404).json({ message: 'Task not found' });
+      }
+
+      res.json({ message: 'Task deleted successfully', deletedTask });
+    } catch (err) {
+      console.error('Error deleting task:', err);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+
+  async function update(req, res) {
+    try {
+      const taskId = req.params.id;
+      const updates = req.body;
+
+      const task = await Task.findByIdAndUpdate(taskId, updates, { new: true });
+
+      if (!task) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+
+      res.json(task);
+    } catch (err) {
+      console.error('Error updating task:', err);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
   };
 
+  async function edit(req, res) {
+    try {
+      const taskId = req.params.index;
+      const updates = req.body;
+  
+      const task = await Task.findById(taskId);
+      if (!task) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+      Object.assign(task, updates);
+  
+      await task.save();
+  
+      res.json(task);
+      } catch (err) {
+      console.error('Error editing task:', err);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+  
 async function show(req, res) {
   try {
     const taskId = req.params.id;
