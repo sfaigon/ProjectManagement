@@ -2,23 +2,23 @@ import { useState } from "react";
 
 const defaultDate = new Date();
 
-const CommentForm = ({ onSubmit, projectId, user}) => {
+const CommentForm = ({ onSubmit, projectId, user }) => {
   const [formData, setFormData] = useState({
     text: "",
     dateCreated: defaultDate,
   });
 
   const handleChange = (evt) => {
-    const { text, value } = evt.target;
+    const { name, value } = evt.target;
     setFormData({
       ...formData,
-      [text]: value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onsubmit(formData);
+    onSubmit(formData);
 
     setFormData({
       text: "",
@@ -32,13 +32,7 @@ const CommentForm = ({ onSubmit, projectId, user}) => {
     <>
       <form onSubmit={handleSubmit}>
         <label>Comment</label>
-        <input
-          type="text"
-          name="text"
-          value={formData.text}
-          onChange={handleChange}
-          required
-        />
+        <input type="text" name="text" onChange={handleChange} required />
         <button>Leave Comment</button>
       </form>
     </>
