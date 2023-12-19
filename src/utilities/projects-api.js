@@ -5,6 +5,10 @@ export async function createProject(projectData) {
   return sendRequest(BASE_URL, "POST", projectData);
 }
 
+export async function updateProject(projectData) {
+  return sendRequest(BASE_URL, "POST", projectData);
+}
+
 export async function getAll() {
   return sendRequest(BASE_URL);
 }

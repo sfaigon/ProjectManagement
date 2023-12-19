@@ -1,4 +1,4 @@
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProjectForm from "../../components/ProjectForm/ProjectForm";
 import { createProject } from "../../utilities/project-service";
 

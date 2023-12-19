@@ -10,6 +10,7 @@ import ProjectCreatePage from "../ProjectCreatePage/ProjectCreatePage";
 import UserListPage from "../UserListPage/UsersListPage";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import ProjectShowPage from "../ProjectShowPage/ProjectShowPage";
+import UpdateProjectPage from "../UpdateProject/UpdateProject";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -22,6 +23,10 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/" element={<WelcomePage />} />
+            <Route
+              path="/projects/:id/update"
+              element={<UpdateProjectPage />}
+            />
             <Route path="/projects/:id" element={<ProjectShowPage />} />
             <Route path="/projects/create" element={<ProjectCreatePage />} />
             <Route path="/projects" element={<ProjectListPage />} />

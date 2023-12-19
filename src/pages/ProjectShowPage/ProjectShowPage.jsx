@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
 
 export default function ProjectShowPage() {
@@ -15,10 +15,27 @@ export default function ProjectShowPage() {
     }
     showProject();
   }, []);
+
   return (
     <>
-      <h1>Project Show page</h1>
-      <h1>{showProject.name}</h1>
+      <div>
+        <h1>{showProject.name}</h1>
+      </div>
+      <div>
+        <p>Date Created: {showProject.dateCreated}</p>
+      </div>
+      <div>
+        <p>Team Members: {showProject.teamMembers}</p>
+      </div>
+      <div>
+        <p>Tasks: {showProject.tasks}</p>
+      </div>
+      <div>
+        <p>Comments: {showProject.comments}</p>
+      </div>
+      <Link to="/projects/:id/update">
+        <button>Update</button>
+      </Link>
     </>
   );
 }
