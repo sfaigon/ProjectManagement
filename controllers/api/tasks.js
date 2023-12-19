@@ -7,6 +7,7 @@ module.exports = {
     edit,
     update,
   };
+  
   async function update(req, res) {
     try {
       const taskId = req.params.id;
