@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import * as tasksAPI from "../../utilities/tasks-api";
 
 // default date for form fields
 const defaultDate = new Date(); 
@@ -25,9 +26,10 @@ const TaskForm = ({ onSubmit }) => {
 
   // Handles form submission
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    const newTask = await tasksAPI.createTask(formData)
+    onSubmit(newTask);
 
     // Reset form fields after submission 
     setFormData({
