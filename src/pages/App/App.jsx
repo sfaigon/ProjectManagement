@@ -23,7 +23,10 @@ export default function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/" element={<WelcomePage />} />
-            <Route path="/projects/:id" element={<ProjectShowPage user={user} />} />
+            <Route
+              path="/projects/:id"
+              element={<ProjectShowPage user={user} />}
+            />
             <Route path="/projects/create" element={<ProjectCreatePage />} />
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/tasks" element={<TaskPage />} />

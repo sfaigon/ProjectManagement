@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
-import * as commentsAPI from "../../utilities/comment-api";
+import * as commentsAPI from "../../utilities/comments-api";
 import CommentForm from "../../components/CommentForm/CommentForm";
-import { createComment } from "../../utilities/comment-service";
+
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -15,14 +15,14 @@ export default function ProjectShowPage({ user }) {
       const project = await projectsAPI.getOne(projectId);
       setShowProject(project);
     }
+
     showProject();
   }, []);
 
   const [comments, setComments] = useState([]);
 
-  async function addComment(newComment) {
+  function addComment(newComment) {
     setComments([...comments, newComment]);
-    await createComment(newComment);
   }
 
   useEffect(function () {
