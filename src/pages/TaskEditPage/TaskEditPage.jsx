@@ -22,7 +22,6 @@ const TaskEditPage = () => {
   const handleEdit = async (formData) => {
     const updatedTask = await tasksAPI.getById(id, formData);
     setTask(updatedTask);
-    // Handle the edit logic using tasksAPI.editTask(id, formData)
   };
 
   if (!task) {
