@@ -6,7 +6,7 @@ module.exports = {
   show,
   edit,
   update,
-  deleteComment,
+  delete: deleteComment,
 
 
 };
