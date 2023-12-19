@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
 import * as commentsAPI from "../../utilities/comment-api";
 import CommentForm from "../../components/CommentForm/CommentForm";
+import { createComment } from "../../utilities/comment-service";
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -19,8 +20,9 @@ export default function ProjectShowPage({ user }) {
 
   const [comments, setComments] = useState([]);
 
-  function addComment(newComment) {
+  async function addComment(newComment) {
     setComments([...comments, newComment]);
+    await createComment(newComment);
   }
 
   useEffect(function () {

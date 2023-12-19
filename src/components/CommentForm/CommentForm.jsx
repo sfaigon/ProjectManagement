@@ -19,7 +19,7 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     onSubmit(formData);
-
+    
     setFormData({
       text: "",
       dateCreated: defaultDate,
