@@ -12,14 +12,4 @@ const projectSchema = new Schema({
   comments: {},
 });
 
-projectSchema.path("dateCreated").get(function (value) {
-  const formattedDate = new Date(value).toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-    year: "numeric",
-  });
-
-  return formattedDate;
-});
-
 module.exports = mongoose.model("Project", projectSchema);

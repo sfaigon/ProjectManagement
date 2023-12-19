@@ -31,7 +31,7 @@ export default function UpdateProjectPage() {
   return (
     <>
       <h2>Update Project</h2>
-      <UpdateProjectForm project={project} onsubmit={handleEdit} />
+      <UpdateProjectForm project={project} onSubmit={handleEdit} />
     </>
   );
 }

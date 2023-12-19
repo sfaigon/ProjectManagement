@@ -22,13 +22,14 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
   };
 
   const handleEditSubmit = async (e) => {
-    e.preventDefualt();
+    e.preventDefault();
     try {
       const updateProject = await projectsAPI.updateProject(
         project._id,
         formData
       );
       onSubmit(updateProject);
+      console.log("submitted");
 
       navigate(`/projects/${updateProject._id}`);
     } catch (error) {
@@ -51,7 +52,7 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
       <div>
         <label>Date Created:</label>
         <input
-          type="text"
+          type="date"
           name="dateCreated"
           value={formData.dateCreated}
           onChange={handleInputChange}

@@ -6,6 +6,7 @@ export async function createProject(projectData) {
 }
 
 export async function updateProject(id, updates) {
+  console.log(updates);
   return sendRequest(`${BASE_URL}/${id}`, "PUT", updates);
 }
 
