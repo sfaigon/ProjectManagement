@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react';
 import * as tasksAPI from '../../utilities/tasks-api'
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import TaskEditForm from '../../components/TaskEditForm/TaskEditForm';
 
 export default function TaskDetailPage() {
   const [task, setTask] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getTaskDetails() {
@@ -19,6 +21,15 @@ export default function TaskDetailPage() {
     getTaskDetails();
   }, [id]);
 
+  const handleDelete = async () => {
+    try {
+      await tasksAPI.deleteTask(id);
+      navigate('/tasks'); 
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
+  };
+
   if (!task) {
     return <p>No Task Info</p>;
   }
@@ -30,6 +41,8 @@ export default function TaskDetailPage() {
         <p><strong>Date Assigned:</strong> {task.dateAssigned}</p>
         <p><strong>Deadline:</strong> {task.deadline}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
+        <Link to={`/tasks/${id}/edit`}>Edit Task</Link>
+        <button onClick={handleDelete}>Delete Task</button>
         </>
     )
   }
