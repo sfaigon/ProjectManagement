@@ -91,3 +91,5 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
     </form>
   );
 };
+
+export default UpdateProjectForm;

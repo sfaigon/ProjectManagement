@@ -4,6 +4,8 @@ module.exports = {
   index,
   show,
   create,
+  edit,
+  update,
 };
 
 async function index(req, res) {
@@ -37,4 +39,42 @@ async function create(req, res) {
   }
 }
 
-async function edit(res, req) {}
+async function edit(res, req) {
+  try {
+    const projectId = req.params.index;
+    const updates = req.body;
+
+    const project = await Project.findById(projectId);
+    if (!project) {
+      return res.status(404).json({ message: "project not found" });
+    }
+    Object.assign(project, updates);
+
+    await project.save();
+
+    res.json(project);
+  } catch (err) {
+    console.error("Error editing project:", err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+async function update(req, res) {
+  try {
+    const projectId = req.params.id;
+    const updates = req.body;
+
+    const project = await Project.findByIdAndUpdate(projectId, updates, {
+      new: true,
+    });
+
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    res.json(project);
+  } catch (err) {
+    console.error("Error updating project:", err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+}

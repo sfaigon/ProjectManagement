@@ -33,7 +33,7 @@ export default function ProjectShowPage() {
       <div>
         <p>Comments: {showProject.comments}</p>
       </div>
-      <Link to="/projects/:id/update">
+      <Link to={`/projects/${projectId}/update`}>
         <button>Update</button>
       </Link>
     </>

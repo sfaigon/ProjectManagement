@@ -12,7 +12,7 @@ import WelcomePage from "../WelcomePage/WelcomePage";
 import ProjectShowPage from "../ProjectShowPage/ProjectShowPage";
 import TaskDetailPage from "../TaskDetailPage/TaskDetailPage";
 import TaskEditPage from "../TaskEditPage/TaskEditPage";
-import UpdateProjectPage from "../UpdateProject/UpdateProject";
+import UpdateProjectPage from "../UpdateProjectPage/UpdateProjectPage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
