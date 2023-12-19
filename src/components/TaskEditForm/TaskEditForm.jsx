@@ -17,9 +17,14 @@ const TaskEditForm = ({ task, onSubmit }) => {
       });
     };
   
-    const handleEditSubmit = (e) => {
+    const handleEditSubmit = async (e) => {
       e.preventDefault();
-      onSubmit(formData);
+      try {
+        const updatedTask = await tasksAPI.updateTask(task._id, formData);
+        onSubmit(updatedTask);
+      } catch (error) {
+        console.error('Error updating task:', error);
+      }
     };
 
     return (
