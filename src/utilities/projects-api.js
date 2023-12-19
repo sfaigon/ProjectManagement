@@ -5,8 +5,8 @@ export async function createProject(projectData) {
   return sendRequest(BASE_URL, "POST", projectData);
 }
 
-export async function updateProject(projectData) {
-  return sendRequest(BASE_URL, "POST", projectData);
+export async function updateProject(id, updates) {
+  return sendRequest(`${BASE_URL}/${id}`, "PUT", updates);
 }
 
 export async function getAll() {
@@ -15,4 +15,8 @@ export async function getAll() {
 
 export async function getOne(projectData) {
   return sendRequest(`${BASE_URL}/${projectData}`, "GET");
+}
+
+export function getById(id) {
+  return sendRequest(`${BASE_URL}/${id}`, "GET");
 }
