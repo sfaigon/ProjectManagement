@@ -4,6 +4,7 @@ import * as projectsAPI from "../../utilities/projects-api";
 import * as commentsAPI from "../../utilities/comments-api";
 import * as userAPI from "../../utilities/users-service";
 import CommentForm from "../../components/CommentForm/CommentForm";
+import TaskIndex from "../../components/TaskIndex/TaskIndex";
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -75,6 +76,8 @@ export default function ProjectShowPage({ user }) {
         <button>Update</button>
       </Link>
       <button onClick={handleDelete}>Delete Project</button>
+
+      <TaskIndex />
 
       <CommentForm user={user} projectId={project} onSubmit={addComment} />
       <ul>
