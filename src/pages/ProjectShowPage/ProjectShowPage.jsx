@@ -47,6 +47,10 @@ export default function ProjectShowPage({ user }) {
       console.error("Error deleting project:", error);
     }
   };
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric'};
+    return new Date(dateString).toLocaleDateString('en-GB', options);
+  };
 
   if (!projectId) {
     return <p>No Project Info</p>;
@@ -62,7 +66,7 @@ export default function ProjectShowPage({ user }) {
           <p>Created By: {projectUser.name}</p>
         </div>
         <div>
-          <p>Date Created: {project.dateCreated}</p>
+          <p>Date Created: {formatDate(project.dateCreated)}</p>
         </div>
         <div>
           <p>Team Members: {project.teamMembers}</p>
