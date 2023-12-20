@@ -4,7 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as usersAPI from "../../utilities/users-api";
 import TaskEditForm from '../../components/TaskEditForm/TaskEditForm';
 
-export default function TaskDetailPage() {
+export default function TaskDetailPage({ user }) {
   const [task, setTask] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -62,11 +62,15 @@ export default function TaskDetailPage() {
         <p><strong>Deadline:</strong> {formatDate(task.deadline)}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
         <p><strong>Task Members:</strong> {taskMembers.join(', ')}</p>
-        
+
+        {task.users == user._id && (
+        <>
         <Link to={`/tasks/${id}/edit`}>
           <button>Edit Task</button>
         </Link>
         <button onClick={handleDelete}>Delete Task</button>
+        </>
+        )}
         </>
     )
   }

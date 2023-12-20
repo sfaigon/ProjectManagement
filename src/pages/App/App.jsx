@@ -34,7 +34,7 @@ export default function App() {
             />
             <Route path="/projects/create" element={<ProjectCreatePage />} />
             <Route path="/projects" element={<ProjectListPage user={user} />} />
-            <Route path="/tasks" element={<TaskPage />} />
+            <Route path="/tasks" element={<TaskPage user={user} />} />
             <Route path="/users" element={<UserListPage />} />
             <Route path="/tasks/:id" element={<TaskDetailPage />} />
             <Route path="/tasks/:id/edit" element={<TaskEditPage />} />

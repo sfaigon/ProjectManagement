@@ -17,8 +17,21 @@ export default function TaskPage({ user }) {
         }
         getTasks();
     }, []);  
-    
-    console.log(tasks.user)
+
+
+    async function getProjectId(taskId) {
+        const oneTask = await tasksAPI.getById(taskId);
+        const projectId= String(oneTask.project)
+        // console.log(typeof oneTask.project)
+        return projectId;
+    }
+
+    // function getString() {
+    //     const newTask = getProjectId(taskId).then();
+    // }
+
+    console.log(getProjectId('65835d9b250785abe44e9b5a'));
+    // console.log(getString);
 
     return (
     <>
@@ -26,10 +39,14 @@ export default function TaskPage({ user }) {
         <ul>
         {tasks.map(
         (task, index) => 
-            task.user.includes(user._id) && (
+            task.users.includes(user._id) && (
                 <li task={task} index={index} key={task._id}>
+                    <Link to={`/project/${getProjectId(task._id)}/tasks/${task._id}`}>
                     <strong>{task.title}</strong>
+                    </Link>
+
                 </li>
+                
             ))}
         </ul>
     </>
