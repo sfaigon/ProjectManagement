@@ -80,7 +80,7 @@ export default function ProjectShowPage({ user }) {
       <ul>
         {comments.map(
           (c, idx) =>
-            showProject._id == c.project && (
+            project._id == c.project && (
               <li key={idx}>
                 <Link to={`/comments/${c._id}`}>
                   <p>{c.text}</p>
