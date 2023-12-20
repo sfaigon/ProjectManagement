@@ -24,14 +24,11 @@ export default function TaskPage() {
     <>
         <h1>My Tasks</h1>
         <ul>
-            {tasks.map((task, index) => (
-                <li key={index}>
-                    <Link to={`/tasks/${task._id}`}>
-                    <strong>{task.title}</strong>
-                    </Link>
-                </li>
-            ))}
-        </ul>
+            {tasks.map((task, index) => 
+            task.user.includes(user._id && (
+                <p> task={task} index={index} key={task._id}</p>
+            )))}
+      )
     </>
     )
 }
