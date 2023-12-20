@@ -46,6 +46,7 @@ export default function TaskDetailPage() {
         <p><strong>Date Assigned:</strong> {formatDate(task.dateAssigned)}</p>
         <p><strong>Deadline:</strong> {formatDate(task.deadline)}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
+        <p><strong>Task Members:</strong> {task.users}</p>
         
         <Link to={`/tasks/${id}/edit`}>
           <button>Edit Task</button>

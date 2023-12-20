@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as tasksAPI from "../../utilities/tasks-api";
 import { useNavigate } from "react-router-dom";
+import * as usersAPI from "../../utilities/users-api";
+import Select from "react-select";
+
 // default date for form fields
 const defaultDate = new Date();
 
@@ -14,6 +17,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
     description: "",
     stage: "In Progress",
     project: projectId,
+    users: []
   });
 
   // Handle input changes
@@ -42,9 +46,32 @@ const TaskForm = ({ onSubmit, projectId }) => {
         deadline: defaultDate,
         description: '',
         stage: 'To Do',
-        project: projectId 
+        project: projectId,
+        users: []
+
     });
   };
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function getUsers() {
+      const users = await usersAPI.getAll();
+      setUsers(users);
+    }
+
+    getUsers();
+  }, []);
+
+  const handleChanges = (selectedOptions) => {
+    const selectedUserIds = selectedOptions.map((option) => option.value);
+
+    setFormData({
+      ...formData,
+      users: selectedUserIds,
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>Title:</label>
@@ -84,6 +111,15 @@ const TaskForm = ({ onSubmit, projectId }) => {
         <option value="In Progress">In Progress</option>
         <option value="Done">Done</option>
       </select>
+
+      <label>Assign to: </label>
+      <Select
+        name="users"
+        onChange={handleChanges}
+        isMulti
+        options={users.map((u) => ({ value: u._id, label: u.name }))}
+      />
+
 
       <button type="submit">Create Task</button>
     </form>
