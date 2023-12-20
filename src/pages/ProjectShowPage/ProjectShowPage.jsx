@@ -9,14 +9,15 @@ export default function ProjectShowPage({ user }) {
   const projectId = location.pathname.slice(10);
   const navigate = useNavigate();
 
-  const [showProject, setShowProject] = useState([]);
+  const [project, setProject] = useState({});
   useEffect(function () {
-    async function showProject() {
-      const project = await projectsAPI.getOne(projectId);
-      setShowProject(project);
+    async function fetchProject() {
+      const fetchedProject = await projectsAPI.getOne(projectId);
+      setProject(fetchedProject);
+      console.log(fetchedProject.user.name);
     }
 
-    showProject();
+    fetchProject();
   }, []);
 
   const [comments, setComments] = useState([]);
@@ -49,30 +50,33 @@ export default function ProjectShowPage({ user }) {
   return (
     <>
       <div>
-        <h1>{showProject.name}</h1>
+        <h1>{project.name}</h1>
       </div>
       <div>
-        <p>Date Created: {showProject.dateCreated}</p>
+        <p>Created By: {project.user}</p>
       </div>
       <div>
-        <p>Team Members: {showProject.teamMembers}</p>
+        <p>Date Created: {project.dateCreated}</p>
       </div>
       <div>
-        <p>Tasks: {showProject.tasks}</p>
+        <p>Team Members: {project.teamMembers}</p>
       </div>
       <div>
-        <p>Comments: {showProject.comments}</p>
+        <p>Tasks: {project.tasks}</p>
+      </div>
+      <div>
+        <p>Comments: {project.comments}</p>
       </div>
       <Link to={`/projects/${projectId}/edit`}>
         <button>Update</button>
       </Link>
       <button onClick={handleDelete}>Delete Project</button>
 
-      <CommentForm user={user} projectId={showProject} onSubmit={addComment} />
+      <CommentForm user={user} projectId={project} onSubmit={addComment} />
       <ul>
         {comments.map(
           (c) =>
-            showProject._id == c.project && (
+            project._id == c.project && (
               <li>
                 <p>
                   {c.text} : {c.user} : {c.project}
