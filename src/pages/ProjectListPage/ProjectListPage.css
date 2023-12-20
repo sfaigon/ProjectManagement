@@ -29,6 +29,7 @@ li {
 }
 
 .plp-label {
+  background-color: rgb(111, 170, 253);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -39,7 +40,7 @@ li {
 }
 
 .project-container {
-  border: 2px solid rgb(43, 43, 43);
+  /* border: 2px solid rgb(43, 43, 43); */
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   height: 70vh;
@@ -52,17 +53,29 @@ li {
 
 .project-list {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-color: rgba(235, 245, 245, 0.871);
   border: 1px solid black;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 20px;
-  width: 33%;
+  width: 100%;
+  height: 100%;
+  padding: 0;
 }
 
+.project-item-container {
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
 .project-item {
   display: flex;
   flex-direction: row;

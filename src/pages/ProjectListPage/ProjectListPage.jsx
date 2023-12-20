@@ -3,6 +3,7 @@ import * as projectsAPI from "../../utilities/projects-api";
 import ProjectItem from "../../components/ProjectItem/ProjectItem";
 import { Link } from "react-router-dom";
 import "./ProjectListPage.css";
+import Button from "@mui/material/Button";
 
 export default function ProjectListPage() {
   const [projects, setProjects] = useState([]);
@@ -23,7 +24,7 @@ export default function ProjectListPage() {
       <div className="plp-container">
         <h1>Project List Page</h1>
         <Link to="/projects/create">
-          <button>Create Project</button>
+          <Button variant="contained">Create Project</Button>
         </Link>
         <div className="project-container">
           <div className="plp-label">
