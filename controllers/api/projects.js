@@ -26,12 +26,12 @@ async function show(req, res) {
 
 async function create(req, res) {
   try {
-    const { name, dateCreated } = req.body;
+    const { name, dateCreated,teamMembers } = req.body;
     const project = new Project({
       user: req.user._id,
       name,
       dateCreated,
-      teamMembers: [],
+      teamMembers,
     });
     await project.save();
     return res.json(project);
