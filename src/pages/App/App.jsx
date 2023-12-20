@@ -15,6 +15,7 @@ import TaskEditPage from "../TaskEditPage/TaskEditPage";
 import UpdateProjectPage from "../ProjectUpdatePage/ProjectUpdatePage";
 import CommentDetailPage from "../CommentDetailPage/CommentDetailPage";
 import CommentEditPage from "../CommentEditPage/CommentEditPage"
+import TaskCreatePage from "../TaskCreatePage/TaskCreatePage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/tasks/:id/edit" element={<TaskEditPage />} />
             <Route path="/comments/:id" element={<CommentDetailPage />}  />
             <Route path="/comments/:id/edit" element={<CommentEditPage />}  />
+            <Route path="/projects/:projectId/tasks/create" element={<TaskCreatePage />} />
           </Routes>
         </>
       ) : (

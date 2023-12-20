@@ -1,10 +1,11 @@
 import { useState } from "react";
 import * as tasksAPI from "../../utilities/tasks-api";
-
+import { useNavigate } from "react-router-dom";
 // default date for form fields
 const defaultDate = new Date();
 
 const TaskForm = ({ onSubmit, projectId }) => {
+  const navigate = useNavigate();
   // Manage form fields
   const [formData, setFormData] = useState({
     title: "",
@@ -12,7 +13,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
     deadline: defaultDate,
     description: "",
     stage: "In Progress",
-    project: projectId._id,
+    project: projectId ? projectId._id : null,
   });
 
   // Handle input changes
@@ -21,28 +22,18 @@ const TaskForm = ({ onSubmit, projectId }) => {
     setFormData({
       ...formData,
       [name]: value,
-      project: projectId._id,
+      project: projectId ? projectId._id : null,
     });
   };
-
-  // const formatDate = (dateString) => {
-  //   const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
-  //   return new Date(dateString).toLocaleDateString('en-GB', options);
-  // };
 
   // Handles form submission
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-  // const formattedFormData = {
-  //     ...formData,
-  //     dateAssigned: formatDate(formData.dateAssigned),
-  //     deadline: formatDate(formData.deadline),
-  //   };
-
   const newTask = await tasksAPI.createTask(formData);
     onSubmit(newTask);
+
+    navigate(`/projects/${projectId}?taskId=${newTask._id}`);
 
     // Reset form fields after submission
     setFormData({
@@ -51,7 +42,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
         deadline: defaultDate,
         description: '',
         stage: 'To Do',
-        project: projectId._id,
+        project: projectId ? projectId._id : null,
     });
   };
 

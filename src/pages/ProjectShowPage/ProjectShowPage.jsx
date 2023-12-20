@@ -4,8 +4,8 @@ import * as projectsAPI from "../../utilities/projects-api";
 import * as commentsAPI from "../../utilities/comments-api";
 import * as userAPI from "../../utilities/users-service";
 import CommentForm from "../../components/CommentForm/CommentForm";
-import * as tasksAPI from "../../utilities/tasks-api"
-import TaskForm from "../../components/TaskForm/TaskForm";
+
+
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -49,20 +49,6 @@ export default function ProjectShowPage({ user }) {
     }
   };
 
-  const [tasks, setTasks] = useState([]);
-
-  function addTask(newTask) {
-      setTasks([...tasks, newTask]);
-  }
-
-  useEffect(function() {
-      async function getTasks() {
-          const tasks = await tasksAPI.getAll();
-          setTasks(tasks);
-      }
-      getTasks();
-  }, []);
-  
   if (!projectId) {
     return <p>No Project Info</p>;
   }
@@ -91,9 +77,11 @@ export default function ProjectShowPage({ user }) {
         <button>Update</button>
       </Link>
       <button onClick={handleDelete}>Delete Project</button>
-
-      <TaskForm projectId={project} onSubmit={addTask} /> 
-
+      <br />
+      <Link to={{pathname:`/projects/${projectId}/tasks/create`, state: {projectId: project._id } }}>
+        <button>Create Task</button>
+      </Link>
+    
       <CommentForm user={user} projectId={project} onSubmit={addComment} />
       <ul>
         {comments.map(
