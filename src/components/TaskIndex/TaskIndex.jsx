@@ -16,8 +16,7 @@ export default function TaskIndex({ project }) {
         }
         getTasks();
     }, []);  
-    
-    console.log(tasks);
+
 
     return (
     <>

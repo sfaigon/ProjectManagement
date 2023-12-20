@@ -11,9 +11,9 @@ export default function NavBar({ user, setUser }) {
   return (
     <nav>
       <Link to="/">
-        <Button variant="text" className="nav-btn">
+        <button variant="text" className="nav-btn">
           Home
-        </Button>
+        </button>
       </Link>
       &nbsp; | &nbsp;
       <Link to="/projects">

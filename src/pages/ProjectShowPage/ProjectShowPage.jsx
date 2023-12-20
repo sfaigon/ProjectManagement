@@ -3,6 +3,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
 import * as commentsAPI from "../../utilities/comments-api";
 import * as userAPI from "../../utilities/users-service";
+import * as usersAPI from "../../utilities/users-api";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import TaskIndex from "../../components/TaskIndex/TaskIndex";
 import Button from "@mui/material/Button";
@@ -14,6 +15,26 @@ export default function ProjectShowPage({ user }) {
   const navigate = useNavigate();
   const [projectUser, setProjectUser] = useState({});
   const [project, setProject] = useState({});
+  const [teamMembers, setTeamMembers] = useState({});
+
+  useEffect (function () {
+    async function fetchNames() {
+      // const team = await Promise.all(
+      //   project.teamMembers.map(async (t) => {
+      //     const user = await usersAPI.getById(t);
+      //     return user;
+      //   })
+      // );
+      const names = project.teamMembers.map(async (userId) => {
+        const user = await usersAPI.getById(userId);
+        return user.name; 
+      });
+      const team = await Promise.all(names);
+      setTeamMembers(team);
+    }
+    fetchNames();
+  }, [project.teamMembers]); 
+  console.log(teamMembers);
   useEffect(function () {
     async function fetchProject() {
       const fetchedProject = await projectsAPI.getById(projectId);
@@ -55,7 +76,7 @@ export default function ProjectShowPage({ user }) {
   if (!projectId) {
     return <p>No Project Info</p>;
   }
-
+  console.log(teamMembers)
   return (
     <>
       <div className="container">
@@ -69,7 +90,7 @@ export default function ProjectShowPage({ user }) {
           <p>Date Created: {formatDate(project.dateCreated)}</p>
         </div>
         <div>
-          <p>Team Members: {project.teamMembers}</p>
+          <p>Team Members: {teamMembers.join(', ')}</p>
         </div>
         <div>
           <p>Tasks: {project.tasks}</p>
