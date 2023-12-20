@@ -15,7 +15,7 @@ export default function ProjectShowPage({ user }) {
   const navigate = useNavigate();
   const [projectUser, setProjectUser] = useState({});
   const [project, setProject] = useState({});
-  const [teamMembers, setTeamMembers] = useState({});
+  const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect (function () {
     async function fetchNames() {
