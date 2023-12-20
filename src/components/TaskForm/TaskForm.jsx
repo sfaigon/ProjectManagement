@@ -1,10 +1,11 @@
 import { useState } from "react";
 import * as tasksAPI from "../../utilities/tasks-api";
-
+import { useNavigate } from "react-router-dom";
 // default date for form fields
 const defaultDate = new Date();
 
-const TaskForm = ({ onSubmit }) => {
+const TaskForm = ({ onSubmit, projectId }) => {
+  const navigate = useNavigate();
   // Manage form fields
   const [formData, setFormData] = useState({
     title: "",
@@ -12,6 +13,7 @@ const TaskForm = ({ onSubmit }) => {
     deadline: defaultDate,
     description: "",
     stage: "In Progress",
+    project: projectId ? projectId._id : null,
   });
 
   // Handle input changes
@@ -20,27 +22,18 @@ const TaskForm = ({ onSubmit }) => {
     setFormData({
       ...formData,
       [name]: value,
+      project: projectId ? projectId._id : null,
     });
-  };
-
-  const formatDate = (dateString) => {
-    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
-    return new Date(dateString).toLocaleDateString('en-GB', options);
   };
 
   // Handles form submission
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-  const formattedFormData = {
-      ...formData,
-      dateAssigned: formatDate(formData.dateAssigned),
-      deadline: formatDate(formData.deadline),
-    };
-
-  const newTask = await tasksAPI.createTask(formattedFormData);
+  const newTask = await tasksAPI.createTask(formData);
     onSubmit(newTask);
+
+    navigate(`/projects/${projectId}?taskId=${newTask._id}`);
 
     // Reset form fields after submission
     setFormData({
@@ -49,6 +42,7 @@ const TaskForm = ({ onSubmit }) => {
         deadline: defaultDate,
         description: '',
         stage: 'To Do',
+        project: projectId ? projectId._id : null,
     });
   };
 
@@ -58,7 +52,7 @@ const TaskForm = ({ onSubmit }) => {
       <input
         type="text"
         name="title"
-        value={formData.title}
+        // value={formData.title}
         onChange={handleInputChange}
         required
       />
@@ -67,7 +61,7 @@ const TaskForm = ({ onSubmit }) => {
       <input
         type="date"
         name="dateAssigned"
-        value={formData.dateAssigned}
+        // value={formData.dateAssigned}
         onChange={handleInputChange}
         required
       />
@@ -76,7 +70,7 @@ const TaskForm = ({ onSubmit }) => {
       <input
         type="date"
         name="deadline"
-        value={formData.deadline}
+        // value={formData.deadline}
         onChange={handleInputChange}
         required
       />
@@ -84,7 +78,7 @@ const TaskForm = ({ onSubmit }) => {
       <label>Description:</label>
       <textarea
         name="description"
-        value={formData.description}
+        // value={formData.description}
         onChange={handleInputChange}
         required
       ></textarea>

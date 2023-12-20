@@ -76,7 +76,11 @@ export default function ProjectShowPage({ user }) {
         <button>Update</button>
       </Link>
       <button onClick={handleDelete}>Delete Project</button>
-
+      <br />
+      <Link to={{pathname:`/projects/${projectId}/tasks/create`, state: {projectId: project._id } }}>
+        <button>Create Task</button>
+      </Link>
+    
       <TaskIndex />
 
       <CommentForm user={user} projectId={project} onSubmit={addComment} />
