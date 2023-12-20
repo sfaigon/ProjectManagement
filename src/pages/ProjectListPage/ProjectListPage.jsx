@@ -32,11 +32,13 @@ export default function ProjectListPage() {
             <ul>Date Created</ul>
             <ul>Created By</ul>
           </div>
-          <ul className="project-list">
+          {/* <ul className="project-list"> */}
+          <div className="project-list">
             {projects.map((p, idx) => (
               <ProjectItem project={p} idx={idx} key={p._id} />
             ))}
-          </ul>
+          </div>
+          {/* </ul> */}
         </div>
       </div>
     </>

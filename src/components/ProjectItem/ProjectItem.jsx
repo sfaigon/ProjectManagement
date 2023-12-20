@@ -13,6 +13,11 @@ export default function ProjectItem({ project, idx }) {
     fetchUser();
   }, []);
 
+  const formatDate = (dateString) => {
+    const options = { day: "numeric", month: "numeric", year: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-GB", options);
+  };
+
   return (
     <>
       <div
@@ -22,7 +27,7 @@ export default function ProjectItem({ project, idx }) {
         <Link to={`/projects/${project._id}`}>
           <div className="project-item">
             <ul>{project.name}</ul>
-            <ul>{project.dateCreated}</ul>
+            <ul>{formatDate(project.dateCreated)}</ul>
             <ul>{user.name}</ul>
           </div>
         </Link>
