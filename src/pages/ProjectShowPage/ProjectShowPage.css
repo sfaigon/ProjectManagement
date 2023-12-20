@@ -2,6 +2,10 @@ body {
   padding: 0;
 }
 
+button {
+  margin: 10px;
+}
+
 .delete-btn {
   margin: 5px;
 }
@@ -10,8 +14,47 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin-top: 30px;
+}
+.p-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 90vh;
+  width: 70vw;
 }
 
-button {
-  margin: 10px;
+.title {
+  background-color: var(--blue);
+  width: 100%;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-list {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.comments {
+  padding: 2px;
+}
+
+.task-list {
+  border: 1px solid black;
+}
+
+.task-list:nth-child(even) {
+  background-color: lightgray;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }

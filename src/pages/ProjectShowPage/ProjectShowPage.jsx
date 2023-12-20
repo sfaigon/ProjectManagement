@@ -58,59 +58,76 @@ export default function ProjectShowPage({ user }) {
   return (
     <>
       <div className="container">
-        <div className="title">
-          <h1>{project.name}</h1>
-        </div>
-        <div className="project-details">
-          <div>
-            <p>Created By: {projectUser.name}</p>
+        <div className="p-container">
+          <div className="title">
+            <h1>{project.name}</h1>
           </div>
-          <div>
-            <p>Date Created: {formatDate(project.dateCreated)}</p>
-          </div>
-          <div>
-            <p>Team Members: {project.teamMembers}</p>
-          </div>
-        </div>
-        <div className="crud-btns">
-          <Link to={`/projects/${projectId}/edit`}>
-            <button>Update</button>
-          </Link>
-          <button className="delete-btn" onClick={handleDelete}>
-            Delete Project
-          </button>
-        </div>
-        <div className="task-container">
-          <TaskIndex project={project} />
+          <div className="project-card">
+            <div className="project-details">
+              <div>
+                <p>Created By: {projectUser.name}</p>
+              </div>
+              <div>
+                <p>Date Created: {formatDate(project.dateCreated)}</p>
+              </div>
+              <div>
+                <p>Team Members: {project.teamMembers}</p>
+              </div>
+            </div>
+            <div className="crud-btns">
+              <Link to={`/projects/${projectId}/edit`}>
+                <button>Update</button>
+              </Link>
+              <button className="delete-btn" onClick={handleDelete}>
+                Delete Project
+              </button>
+            </div>
+            <div className="task-comment">
+              <div className="task-container">
+                <TaskIndex project={project} />
 
-          <Link
-            to={{
-              pathname: `/projects/${projectId}/tasks/create`,
-              state: { projectId: project._id },
-            }}
-          >
-            <button>Create Task</button>
-          </Link>
-        </div>
-        <div className="comment-container">
-          <CommentForm user={user} projectId={project} onSubmit={addComment} />
-          <ul>
-            {comments.map(
-              (c, idx) =>
-                project._id == c.project &&
-                (user._id == c.user ? (
-                  <div className="comment-list">
-                    <li key={idx}>
-                      <Link to={`/comments/${c._id}`}>
-                        <p>{c.text}</p>
-                      </Link>
-                    </li>
-                  </div>
-                ) : (
-                  <p key={idx}>{c.text}</p>
-                ))
-            )}
-          </ul>
+                <Link
+                  to={{
+                    pathname: `/projects/${projectId}/tasks/create`,
+                    state: { projectId: project._id },
+                  }}
+                >
+                  <button>Create Task</button>
+                </Link>
+              </div>
+              <div className="comment-container">
+                <CommentForm
+                  user={user}
+                  projectId={project}
+                  onSubmit={addComment}
+                />
+                <div className="comment-list">
+                  <ul>
+                    {comments.map(
+                      (c, idx) =>
+                        project._id == c.project &&
+                        (user._id == c.user ? (
+                          <div
+                            className="comments"
+                            style={{
+                              backgroundColor: idx % 2 ? "white" : "lightgray",
+                            }}
+                          >
+                            <li key={idx}>
+                              <Link to={`/comments/${c._id}`}>
+                                <p>{c.text}</p>
+                              </Link>
+                            </li>
+                          </div>
+                        ) : (
+                          <p key={idx}>{c.text}</p>
+                        ))
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
