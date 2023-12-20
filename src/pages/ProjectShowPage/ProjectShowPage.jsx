@@ -5,6 +5,8 @@ import * as commentsAPI from "../../utilities/comments-api";
 import * as userAPI from "../../utilities/users-service";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import TaskIndex from "../../components/TaskIndex/TaskIndex";
+import Button from "@mui/material/Button";
+import "./ProjectShowPage.css";
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -71,9 +73,11 @@ export default function ProjectShowPage({ user }) {
         <p>Comments: {project.comments}</p>
       </div>
       <Link to={`/projects/${projectId}/edit`}>
-        <button>Update</button>
+        <Button variant="contained">Update</Button>
       </Link>
-      <button onClick={handleDelete}>Delete Project</button>
+      <Button className="delete-btn" variant="contained" onClick={handleDelete}>
+        Delete Project
+      </Button>
 
       <TaskIndex />
 
