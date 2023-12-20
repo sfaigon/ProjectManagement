@@ -34,17 +34,6 @@ export default function TaskDetailPage() {
     return <p>No Task Info</p>;
   }
 
-  // const formattedDateAssigned = new Date(task.dateAssigned).toLocaleString('en-GB', {
-  //   month: 'numeric',
-  //   day: 'numeric',
-  //   year: 'numeric',
-  // });
-  // const formattedDeadline = new Date(task.deadline).toLocaleString('en-GB', {
-  //   month: 'numeric',
-  //   day: 'numeric',
-  //   year: 'numeric',
-  // });
-
     return (
         <>
         <h2>{task.title}</h2>
@@ -53,7 +42,9 @@ export default function TaskDetailPage() {
         <p><strong>Deadline:</strong> {task.deadline}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
         
-        <Link to={`/tasks/${id}/edit`}>Edit Task</Link>
+        <Link to={`/tasks/${id}/edit`}>
+          <button>Edit Task</button>
+        </Link>
         <button onClick={handleDelete}>Delete Task</button>
         </>
     )
