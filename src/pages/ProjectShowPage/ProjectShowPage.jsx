@@ -87,12 +87,10 @@ export default function ProjectShowPage({ user }) {
         <div>
           <p>Team Members: {teamMembers.join(', ')}</p>
         </div>
-        <div>
-          <p>Tasks: {project.tasks}</p>
-        </div>
-        <div>
-          <p>Comments: {project.comments}</p>
-        </div>
+        
+
+        {project.user == user._id && (
+          <>
         <Link to={`/projects/${projectId}/edit`}>
           <Button variant="contained">Update</Button>
         </Link>
@@ -112,6 +110,13 @@ export default function ProjectShowPage({ user }) {
         >
           <button>Create Task</button>
         </Link>
+          </>
+        )
+
+        }
+
+
+
 
         <TaskIndex project={project} />
 
