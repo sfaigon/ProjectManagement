@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Select from "react-select";
+import * as usersAPI from "../../utilities/users-api";
 
 const defaultDate = new Date();
 
@@ -21,11 +23,31 @@ const ProjectForm = ({ onsubmit }) => {
     console.log("submitting");
     e.preventDefault();
     onsubmit(formData);
-
+    console.log(formData);
     setFormData({
       name: "",
       dateCreated: defaultDate,
       teamMembers: [],
+    });
+  };
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function getUsers() {
+      const users = await usersAPI.getAll();
+      setUsers(users);
+    }
+
+    getUsers();
+  }, []);
+
+  const handleChanges = (selectedOptions) => {
+    const selectedUserIds = selectedOptions.map((option) => option.value);
+
+    setFormData({
+      ...formData,
+      teamMembers: selectedUserIds,
     });
   };
 
@@ -50,12 +72,20 @@ const ProjectForm = ({ onsubmit }) => {
       />
 
       <label>Assign To:</label>
-      <input
+      {/* <input
         type="select"
         name="teamMembers"
         value={formData.teamMembers}
         onChange={handleChange}
+      /> */}
+
+      <Select
+        name="teamMembers"
+        onChange={handleChanges}
+        isMulti
+        options={users.map((u) => ({ value: u._id, label: u.name }))}
       />
+
       <button type="submit">Create</button>
     </form>
   );
