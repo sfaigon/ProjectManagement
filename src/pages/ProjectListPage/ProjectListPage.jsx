@@ -19,6 +19,7 @@ export default function ProjectListPage() {
     }
     getProjects();
   }, []);
+  
   return (
     <>
       <div className="plp-container">

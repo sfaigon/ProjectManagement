@@ -21,6 +21,8 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
     });
   };
 
+  
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
