@@ -19,7 +19,6 @@ export default function ProjectListPage({ user }) {
     }
     getProjects();
   }, []);
-
   return (
     <>
       <div className="plp-container">
@@ -33,7 +32,6 @@ export default function ProjectListPage({ user }) {
             <ul>Date Created</ul>
             <ul>Created By</ul>
           </div>
-          {/* <ul className="project-list"> */}
           <div className="project-list">
             {projects.map(
               (p, idx) =>
@@ -42,9 +40,23 @@ export default function ProjectListPage({ user }) {
                 )
             )}
           </div>
-          {/* </ul> */}
         </div>
         <h1>Projects Assigned</h1>
+        <div className="project-container">
+          <div className="plp-label">
+            <ul>Project Name</ul>
+            <ul>Date Created</ul>
+            <ul>Created By</ul>
+          </div>
+          <div className="project-list">
+            {projects.map(
+              (p, idx) =>
+                p.teamMembers.includes(user._id) && (
+                  <ProjectItem project={p} idx={idx} key={p._id} />
+                )
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
