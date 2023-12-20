@@ -3,7 +3,7 @@ import * as tasksAPI from "../../utilities/tasks-api";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import { Link } from "react-router-dom";
 
-export default function TaskPage() {
+export default function TaskPage({ user }) {
     const [tasks, setTasks] = useState([]);
 
     function addTask(newTask) {
@@ -18,17 +18,20 @@ export default function TaskPage() {
         getTasks();
     }, []);  
     
-    
+    console.log(tasks.user)
 
     return (
     <>
         <h1>My Tasks</h1>
         <ul>
-            {tasks.map((task, index) => 
-            task.user.includes(user._id && (
-                <p> task={task} index={index} key={task._id}</p>
-            )))}
-      )
+        {tasks.map(
+        (task, index) => 
+            task.user.includes(user._id) && (
+                <li task={task} index={index} key={task._id}>
+                    <strong>{task.title}</strong>
+                </li>
+            ))}
+        </ul>
     </>
     )
 }
