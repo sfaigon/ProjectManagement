@@ -13,7 +13,6 @@ const taskSchema = new Schema({
     dateAssigned: {
       type: Date,
       required: true,
-      default: Date.now,
     },
     description: {
       type: String,
@@ -33,6 +32,7 @@ const taskSchema = new Schema({
     project: [
       {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project'
       },
     ]
   }, {

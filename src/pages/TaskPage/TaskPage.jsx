@@ -23,7 +23,7 @@ export default function TaskPage() {
     return (
     <>
         <h1>My Tasks</h1>
-        < TaskForm onSubmit={addTask}/> 
+        {/* < TaskForm onSubmit={addTask}/>  */}
         <ul>
             {tasks.map((task, index) => (
                 <li key={index}>
