@@ -54,49 +54,55 @@ export default function ProjectShowPage({ user }) {
 
   return (
     <>
-      <div>
-        <h1>{project.name}</h1>
-      </div>
-      <div>
-        <p>Created By: {projectUser.name}</p>
-      </div>
-      <div>
-        <p>Date Created: {project.dateCreated}</p>
-      </div>
-      <div>
-        <p>Team Members: {project.teamMembers}</p>
-      </div>
-      <div>
-        <p>Tasks: {project.tasks}</p>
-      </div>
-      <div>
-        <p>Comments: {project.comments}</p>
-      </div>
-      <Link to={`/projects/${projectId}/edit`}>
-        <Button variant="contained">Update</Button>
-      </Link>
-      <Button className="delete-btn" variant="contained" onClick={handleDelete}>
-        Delete Project
-      </Button>
+      <div className="container">
+        <div>
+          <h1>{project.name}</h1>
+        </div>
+        <div>
+          <p>Created By: {projectUser.name}</p>
+        </div>
+        <div>
+          <p>Date Created: {project.dateCreated}</p>
+        </div>
+        <div>
+          <p>Team Members: {project.teamMembers}</p>
+        </div>
+        <div>
+          <p>Tasks: {project.tasks}</p>
+        </div>
+        <div>
+          <p>Comments: {project.comments}</p>
+        </div>
+        <Link to={`/projects/${projectId}/edit`}>
+          <Button variant="contained">Update</Button>
+        </Link>
+        <Button
+          className="delete-btn"
+          variant="contained"
+          onClick={handleDelete}
+        >
+          Delete Project
+        </Button>
 
-      <TaskIndex />
+        <TaskIndex />
 
-      <CommentForm user={user} projectId={project} onSubmit={addComment} />
-      <ul>
-        {comments.map(
-          (c, idx) =>
-            project._id == c.project &&
-            (user._id == c.user ? (
-              <li key={idx}>
-                <Link to={`/comments/${c._id}`}>
-                  <p>{c.text}</p>
-                </Link>
-              </li>
-            ) : (
-              <p key={idx}>{c.text}</p>
-            ))
-        )}
-      </ul>
+        <CommentForm user={user} projectId={project} onSubmit={addComment} />
+        <ul>
+          {comments.map(
+            (c, idx) =>
+              project._id == c.project &&
+              (user._id == c.user ? (
+                <li key={idx}>
+                  <Link to={`/comments/${c._id}`}>
+                    <p>{c.text}</p>
+                  </Link>
+                </li>
+              ) : (
+                <p key={idx}>{c.text}</p>
+              ))
+          )}
+        </ul>
+      </div>
     </>
   );
 }

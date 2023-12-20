@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as commentsAPI from "../../utilities/comments-api";
+import Button from "@mui/material/Button";
 
 const CommentForm = ({ onSubmit, projectId, user }) => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
           onChange={handleChange}
           required
         />
-        <button>Leave Comment</button>
+        <Button variant="contained">Leave Comment</Button>
       </form>
     </>
   );
