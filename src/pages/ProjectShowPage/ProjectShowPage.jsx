@@ -81,7 +81,7 @@ export default function ProjectShowPage({ user }) {
         <button>Create Task</button>
       </Link>
     
-      <TaskIndex />
+      <TaskIndex project={project} />
 
       <CommentForm user={user} projectId={project} onSubmit={addComment} />
       <ul>
