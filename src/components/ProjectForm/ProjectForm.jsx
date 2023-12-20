@@ -1,28 +1,28 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as usersAPI from "../../utilities/users-api";
 import Select from "react-select";
 
 const defaultDate = new Date();
 
-const ProjectForm = ({ onsubmit }) => {
+const ProjectForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: "",
     dateCreated: defaultDate,
     teamMembers: [],
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (selectedOptions) => {
+    const selectedUserIds = selectedOptions.map((option) => option.value);
+
     setFormData({
       ...formData,
-      [name]: value,
+      teamMembers: selectedUserIds,
     });
   };
 
   const handleSubmit = (e) => {
-    console.log("submitting");
     e.preventDefault();
-    onsubmit(formData);
+    onSubmit(formData);
 
     setFormData({
       name: "",
@@ -33,11 +33,12 @@ const ProjectForm = ({ onsubmit }) => {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(function () {
+  useEffect(() => {
     async function getUsers() {
       const users = await usersAPI.getAll();
       setUsers(users);
     }
+
     getUsers();
   }, []);
 
@@ -48,7 +49,7 @@ const ProjectForm = ({ onsubmit }) => {
         type="text"
         name="name"
         value={formData.name}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
         required
       />
 
@@ -57,26 +58,33 @@ const ProjectForm = ({ onsubmit }) => {
         type="date"
         name="dateCreated"
         value={formData.dateCreated}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
         required
       />
 
       <label>Assign To:</label>
-      {/* <input
-        type="select"
+
+      <Select
         name="teamMembers"
-        value={formData.teamMembers}
         onChange={handleChange}
-      /> */}
+        isMulti
+        options={users.map((u) => ({ value: u._id, label: u.name }))}
+      />
 
-      {/* Select options show up */}
+      <button type="submit">Create</button>
+    </form>
+  );
+};
 
-      <select name="teamMembers" onChange={handleChange}>
-        {users.map((u, idx) => (
-          <option value="u._id">{u.name}</option>
-        ))}
-      </select>
+export default ProjectForm;
 
+
+{/* <input
+  type="select"
+  name="teamMembers"
+  value={formData.teamMembers}
+  onChange={handleChange}
+/> */}
       {/* 
      <Select 
       isMulti
@@ -87,10 +95,3 @@ const ProjectForm = ({ onsubmit }) => {
       />
 
        */}
-
-      <button type="submit">Create</button>
-    </form>
-  );
-};
-
-export default ProjectForm;
