@@ -34,8 +34,16 @@ export default function TaskDetailPage() {
     return <p>No Task Info</p>;
   }
 
-  const formattedDateAssigned = new Date(task.dateAssigned).toLocaleDateString('en-GB');
-  const formattedDeadline = new Date(task.deadline).toLocaleDateString('en-GB');
+  const formattedDateAssigned = new Date(task.dateAssigned).toLocaleString('en-GB', {
+    month: 'numeric',
+    day: 'numeric',
+    year: 'numeric',
+  });
+  const formattedDeadline = new Date(task.deadline).toLocaleString('en-GB', {
+    month: 'numeric',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
     return (
         <>

@@ -25,7 +25,7 @@ const TaskForm = ({ onSubmit }) => {
   };
 
   const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-GB', options);
   };
 
