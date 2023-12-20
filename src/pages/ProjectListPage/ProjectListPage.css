@@ -1,0 +1,71 @@
+body {
+  background-color: rgb(236, 242, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(111, 170, 253);
+  width: 100vw;
+  height: 50px;
+  margin: 0;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+.plp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plp-label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.project-container {
+  border: 2px solid rgb(43, 43, 43);
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 70vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(235, 245, 245, 0.871);
+  border: 1px solid black;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  width: 33%;
+}
+
+.project-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}

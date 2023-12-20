@@ -17,8 +17,6 @@ export default function ProjectShowPage({ user }) {
       const fetchedUser = await userAPI.getUserById(fetchedProject.user);
       setProject(fetchedProject);
       setProjectUser(fetchedUser);
-      console.log(fetchedProject);
-      console.log(fetchedUser);
     }
 
     fetchProject();
