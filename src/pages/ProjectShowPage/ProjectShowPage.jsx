@@ -2,19 +2,23 @@ import { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import * as projectsAPI from "../../utilities/projects-api";
 import * as commentsAPI from "../../utilities/comments-api";
+import * as userAPI from "../../utilities/users-service";
 import CommentForm from "../../components/CommentForm/CommentForm";
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
   const projectId = location.pathname.slice(10);
   const navigate = useNavigate();
-
+  const [projectUser, setProjectUser] = useState({});
   const [project, setProject] = useState({});
   useEffect(function () {
     async function fetchProject() {
-      const fetchedProject = await projectsAPI.getOne(projectId);
+      const fetchedProject = await projectsAPI.getById(projectId);
+      const fetchedUser = await userAPI.getUserById(fetchedProject.user);
       setProject(fetchedProject);
-      console.log(fetchedProject.user.name);
+      setProjectUser(fetchedUser);
+      console.log(fetchedProject);
+      console.log(fetchedUser);
     }
 
     fetchProject();
@@ -53,7 +57,7 @@ export default function ProjectShowPage({ user }) {
         <h1>{project.name}</h1>
       </div>
       <div>
-        <p>Created By: {project.user}</p>
+        <p>Created By: {projectUser.name}</p>
       </div>
       <div>
         <p>Date Created: {project.dateCreated}</p>
