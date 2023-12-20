@@ -24,7 +24,7 @@ export default function TaskIndex({project}) {
         <h1>My Tasks</h1>
         <ul>
             {tasks.map((task, index) =>  
-            project._id == task.project ?
+            (project._id == task.project ?
             (
               <li key={index}>
                 <Link to={`/tasks/${task._id}`}>
@@ -33,7 +33,7 @@ export default function TaskIndex({project}) {
               </li>
             ) : (
               <p key={index}>{task.title}</p>
-            ))}
+            )))}
         </ul>
     </>
     )
