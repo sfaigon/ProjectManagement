@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
-import Button from "@mui/material/Button";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -12,29 +11,21 @@ export default function NavBar({ user, setUser }) {
   return (
     <nav>
       <Link to="/projects">
-        <Button variant="text" className="nav-btn">
-          Projects
-        </Button>
+        <button className="nav-btn">Projects</button>
       </Link>
       &nbsp; | &nbsp;
       <Link to="/tasks">
-        <Button variant="text" className="nav-btn">
-          Tasks
-        </Button>
+        <button className="nav-btn">Tasks</button>
       </Link>
       &nbsp; | &nbsp;
       <Link to="/users">
-        <Button variant="text" className="nav-btn">
-          Users
-        </Button>
+        <button className="nav-btn">Users</button>
       </Link>
       &nbsp; | &nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;
       <Link to="" onClick={handleLogOut}>
-        <Button variant="text" className="nav-btn">
-          Log Out
-        </Button>
+        <button className="nav-btn">Log Out</button>
       </Link>
     </nav>
   );
