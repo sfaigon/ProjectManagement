@@ -1,0 +1,26 @@
+.container {
+  border: 1px solid black;
+}
+
+.user-container {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  height: 80vh;
+  width: 80vw;
+}
+
+.title {
+  border: 1px solid black;
+  border-radius: 10px 10px 0px 0px;
+}
+
+/* .user-list {
+  border: 1px solid black;
+} */
+.user {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 5px;
+  padding: 3px;
+}
