@@ -35,3 +35,5 @@ const CommentEditPage = () => {
     </>
   );
 };
+
+export default CommentEditPage;

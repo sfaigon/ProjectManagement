@@ -23,7 +23,7 @@ const CommentEditForm = ({ comment, onSubmit }) => {
       const updatedComment = await commentsAPI.updateComment(comment._id, formData);
       onSubmit(updatedComment);
 
-      navigate(`/comments/${updatedComment._id}`);
+      navigate(`/projects/${updatedComment.project}`);
     } catch (error) {
       console.error("Error updating comment:", error);
     }
