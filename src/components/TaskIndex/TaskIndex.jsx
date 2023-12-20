@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 
-export default function TaskIndex() {
+export default function TaskIndex({project}) {
     const [tasks, setTasks] = useState([]);
 
 
@@ -23,12 +23,16 @@ export default function TaskIndex() {
     <>
         <h1>My Tasks</h1>
         <ul>
-            {tasks.map((task, index) => (
-                <li key={index}>
-                    <Link to={`/tasks/${task._id}`}>
-                    <strong>{task.title}</strong>
-                    </Link>
-                </li>
+            {tasks.map((task, index) =>  
+            project._id == task.project ?
+            (
+              <li key={index}>
+                <Link to={`/tasks/${task._id}`}>
+                  <p>{task.title}</p>
+                </Link>
+              </li>
+            ) : (
+              <p key={index}>{task.title}</p>
             ))}
         </ul>
     </>
