@@ -41,7 +41,7 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
           onChange={handleChange}
           required
         />
-        <Button variant="contained">Leave Comment</Button>
+        <button>Leave Comment</button>
       </form>
     </>
   );
