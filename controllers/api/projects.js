@@ -17,7 +17,9 @@ async function index(req, res) {
 
 async function show(req, res) {
   console.log("route triggered");
-  const projectId = await Project.findById(req.params.id);
+  const projectId = await Project.findById(req.params.id).populate({
+    path: "user",
+  });
   console.log("Project ID:", projectId);
   res.json(projectId);
 }
@@ -26,6 +28,7 @@ async function create(req, res) {
   try {
     const { name, dateCreated } = req.body;
     const project = new Project({
+      user: req.user._id,
       name,
       dateCreated,
       teamMembers: [],

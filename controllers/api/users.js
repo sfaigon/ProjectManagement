@@ -1,12 +1,14 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../../models/user");
+const user = require("../../models/user");
 
 module.exports = {
   create,
   login,
   checkToken,
   index,
+  getUserById,
 };
 
 function checkToken(req, res) {
@@ -52,4 +54,9 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: "24h" }
   );
+}
+
+async function getUserById(req, res) {
+  const user = await User.findById(req.params.id);
+  res.json(user);
 }
