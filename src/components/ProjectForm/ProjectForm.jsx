@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as usersAPI from "../../utilities/users-api";
+import Select from "react-select";
 
 const defaultDate = new Date();
 
@@ -67,16 +68,26 @@ const ProjectForm = ({ onsubmit }) => {
         value={formData.teamMembers}
         onChange={handleChange}
       /> */}
-      <select
-      name="teamMembers"
-      onChange={handleChange}
-      >
-        {users.map((u,idx) => (
+
+      {/* Select options show up */}
+
+      <select name="teamMembers" onChange={handleChange}>
+        {users.map((u, idx) => (
           <option value="u._id">{u.name}</option>
         ))}
       </select>
-      
-      
+
+      {/* 
+     <Select 
+      isMulti
+      name="teamMembers"
+      options={users.map((u,idx) => (
+          {value : u._id, label: u.name},
+        ))}
+      />
+
+       */}
+
       <button type="submit">Create</button>
     </form>
   );
