@@ -2,13 +2,14 @@ import { useState } from 'react';
 import * as tasksAPI from '../../utilities/tasks-api'
 import { useNavigate } from 'react-router-dom';  
 
-const TaskEditForm = ({ task, onSubmit }) => {
+const TaskEditForm = ({ task, onSubmit, projectId }) => {
     const [formData, setFormData] = useState({
       title: task.title,
       dateAssigned: task.dateAssigned,
       deadline: task.deadline,
       description: task.description,
       stage: task.stage,
+      project: projectId._id,
     });
     
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const TaskEditForm = ({ task, onSubmit }) => {
       setFormData({
         ...formData,
         [name]: value,
+        project: projectId._id,
       });
     };
   

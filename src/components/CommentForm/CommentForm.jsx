@@ -23,7 +23,7 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
     onSubmit(newComment);
 
     setFormData({
-      text: "",
+      text: " ",
       user: user._id,
       project: projectId._id,
     });
@@ -33,7 +33,13 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
     <>
       <form onSubmit={handleSubmit}>
         <label>Comment</label>
-        <input type="text" name="text" onChange={handleChange} required />
+        <input
+          type="text"
+          name="text"
+          value={formData.text}
+          onChange={handleChange}
+          required
+        />
         <button>Leave Comment</button>
       </form>
     </>

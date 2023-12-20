@@ -21,7 +21,7 @@ const taskSchema = new Schema({
     },
     stage: {
       type: String,
-      enum: ['To Do', 'In Progress', 'Done'], // Adjust these stages based on your specific needs
+      enum: ['To Do', 'In Progress', 'Done'], 
       default: 'To Do',
     },
     users: [
@@ -30,6 +30,11 @@ const taskSchema = new Schema({
         ref: 'User',
       },
     ],
+    project: [
+      {
+      type: mongoose.Schema.Types.ObjectId,
+      },
+    ]
   }, {
     timestamps: true
   });
