@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./ProjectListPage.css";
 import Button from "@mui/material/Button";
 
-export default function ProjectListPage() {
+export default function ProjectListPage({ user }) {
   const [projects, setProjects] = useState([]);
 
   function addProject(newProject) {
@@ -19,11 +19,10 @@ export default function ProjectListPage() {
     }
     getProjects();
   }, []);
-  
   return (
     <>
       <div className="plp-container">
-        <h1>Project List Page</h1>
+        <h1>Projects Created </h1>
         <Link to="/projects/create">
           <Button variant="contained">Create Project</Button>
         </Link>
@@ -33,13 +32,30 @@ export default function ProjectListPage() {
             <ul>Date Created</ul>
             <ul>Created By</ul>
           </div>
-          {/* <ul className="project-list"> */}
           <div className="project-list">
-            {projects.map((p, idx) => (
-              <ProjectItem project={p} idx={idx} key={p._id} />
-            ))}
+            {projects.map(
+              (p, idx) =>
+                p.user == user._id && (
+                  <ProjectItem project={p} idx={idx} key={p._id} />
+                )
+            )}
           </div>
-          {/* </ul> */}
+        </div>
+        <h1>Projects Assigned</h1>
+        <div className="project-container">
+          <div className="plp-label">
+            <ul>Project Name</ul>
+            <ul>Date Created</ul>
+            <ul>Created By</ul>
+          </div>
+          <div className="project-list">
+            {projects.map(
+              (p, idx) =>
+                p.teamMembers.includes(user._id) && (
+                  <ProjectItem project={p} idx={idx} key={p._id} />
+                )
+            )}
+          </div>
         </div>
       </div>
     </>
