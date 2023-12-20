@@ -71,12 +71,12 @@ export default function ProjectShowPage({ user }) {
       <CommentForm user={user} projectId={showProject} onSubmit={addComment} />
       <ul>
         {comments.map(
-          (c) =>
+          (c, idx) =>
             showProject._id == c.project && (
-              <li>
-                <p>
-                  {c.text} : {c.user} : {c.project}
-                </p>
+              <li key={idx}>
+                <Link to={`/comments/${c._id}`}>
+                  <p>{c.text}</p>
+                </Link>
               </li>
             )
         )}

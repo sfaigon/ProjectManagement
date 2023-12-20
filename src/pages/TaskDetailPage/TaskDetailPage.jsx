@@ -41,7 +41,7 @@ export default function TaskDetailPage() {
         <p><strong>Date Assigned:</strong> {task.dateAssigned}</p>
         <p><strong>Deadline:</strong> {task.deadline}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
-        <Link to={`/tasks/${id}/edit`}>Edit Task</Link>
+        <Link to={`/tasks/${id}/edit`}></Link>
         <button onClick={handleDelete}>Delete Task</button>
         </>
     )

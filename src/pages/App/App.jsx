@@ -13,6 +13,7 @@ import ProjectShowPage from "../ProjectShowPage/ProjectShowPage";
 import TaskDetailPage from "../TaskDetailPage/TaskDetailPage";
 import TaskEditPage from "../TaskEditPage/TaskEditPage";
 import UpdateProjectPage from "../ProjectUpdatePage/ProjectUpdatePage";
+import CommentDetailPage from "../CommentDetailPage/CommentDetailPage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -23,7 +24,6 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            {/* Route components in here */}
             <Route path="/" element={<WelcomePage />} />
             <Route path="/projects/:id/edit" element={<UpdateProjectPage />} />
             <Route
@@ -36,6 +36,7 @@ export default function App() {
             <Route path="/users" element={<UserListPage />} />
             <Route path="/tasks/:id" element={<TaskDetailPage />} />
             <Route path="/tasks/:id/edit" element={<TaskEditPage />} />
+            <Route path="/comments/:id" element={<CommentDetailPage />}  />
           </Routes>
         </>
       ) : (
