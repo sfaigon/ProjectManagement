@@ -15,16 +15,10 @@ export default function ProjectShowPage({ user }) {
   const navigate = useNavigate();
   const [projectUser, setProjectUser] = useState({});
   const [project, setProject] = useState({});
-  const [teamMembers, setTeamMembers] = useState({});
+  const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect (function () {
     async function fetchNames() {
-      // const team = await Promise.all(
-      //   project.teamMembers.map(async (t) => {
-      //     const user = await usersAPI.getById(t);
-      //     return user;
-      //   })
-      // );
       const names = project.teamMembers.map(async (userId) => {
         const user = await usersAPI.getById(userId);
         return user.name; 
@@ -35,6 +29,7 @@ export default function ProjectShowPage({ user }) {
     fetchNames();
   }, [project.teamMembers]); 
   console.log(teamMembers);
+  
   useEffect(function () {
     async function fetchProject() {
       const fetchedProject = await projectsAPI.getById(projectId);

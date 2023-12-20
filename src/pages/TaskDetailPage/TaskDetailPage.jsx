@@ -1,13 +1,28 @@
 import {useEffect, useState} from 'react';
 import * as tasksAPI from '../../utilities/tasks-api'
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import * as usersAPI from "../../utilities/users-api";
 import TaskEditForm from '../../components/TaskEditForm/TaskEditForm';
 
 export default function TaskDetailPage() {
   const [task, setTask] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [taskMembers, setTaskMembers] = useState([]);
 
+  useEffect (function () {
+    async function fetchNames() {
+      const names = task.users.map(async (userId) => {
+        const user = await usersAPI.getById(userId);
+        return user.name; 
+      });
+      const team = await Promise.all(names);
+      setTaskMembers(team);
+    }
+    fetchNames();
+  }, [task.users]); 
+  console.log(taskMembers)
+  console.log(task.users)
   useEffect(() => {
     async function getTaskDetails() {
         try {
@@ -46,7 +61,7 @@ export default function TaskDetailPage() {
         <p><strong>Date Assigned:</strong> {formatDate(task.dateAssigned)}</p>
         <p><strong>Deadline:</strong> {formatDate(task.deadline)}</p>
         <p><strong>Stage:</strong> {task.stage}</p>
-        <p><strong>Task Members:</strong> {task.users}</p>
+        <p><strong>Task Members:</strong> {taskMembers.join(', ')}</p>
         
         <Link to={`/tasks/${id}/edit`}>
           <button>Edit Task</button>
