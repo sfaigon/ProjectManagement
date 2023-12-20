@@ -5,6 +5,8 @@ import * as commentsAPI from "../../utilities/comments-api";
 import * as userAPI from "../../utilities/users-service";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import TaskIndex from "../../components/TaskIndex/TaskIndex";
+import Button from "@mui/material/Button";
+import "./ProjectShowPage.css";
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -18,8 +20,6 @@ export default function ProjectShowPage({ user }) {
       const fetchedUser = await userAPI.getUserById(fetchedProject.user);
       setProject(fetchedProject);
       setProjectUser(fetchedUser);
-      console.log(fetchedProject);
-      console.log(fetchedUser);
     }
 
     fetchProject();
@@ -54,51 +54,64 @@ export default function ProjectShowPage({ user }) {
 
   return (
     <>
-      <div>
-        <h1>{project.name}</h1>
-      </div>
-      <div>
-        <p>Created By: {projectUser.name}</p>
-      </div>
-      <div>
-        <p>Date Created: {project.dateCreated}</p>
-      </div>
-      <div>
-        <p>Team Members: {project.teamMembers}</p>
-      </div>
-      <div>
-        <p>Tasks: {project.tasks}</p>
-      </div>
-      <div>
-        <p>Comments: {project.comments}</p>
-      </div>
-      <Link to={`/projects/${projectId}/edit`}>
-        <button>Update</button>
-      </Link>
-      <button onClick={handleDelete}>Delete Project</button>
-      <br />
-      <Link to={{pathname:`/projects/${projectId}/tasks/create`, state: {projectId: project._id } }}>
-        <button>Create Task</button>
-      </Link>
-    
-      <TaskIndex project={project} />
+      <div className="container">
+        <div>
+          <h1>{project.name}</h1>
+        </div>
+        <div>
+          <p>Created By: {projectUser.name}</p>
+        </div>
+        <div>
+          <p>Date Created: {project.dateCreated}</p>
+        </div>
+        <div>
+          <p>Team Members: {project.teamMembers}</p>
+        </div>
+        <div>
+          <p>Tasks: {project.tasks}</p>
+        </div>
+        <div>
+          <p>Comments: {project.comments}</p>
+        </div>
+        <Link to={`/projects/${projectId}/edit`}>
+          <Button variant="contained">Update</Button>
+        </Link>
+        <Button
+          className="delete-btn"
+          variant="contained"
+          onClick={handleDelete}
+        >
+          Delete Project
+        </Button>
+        <br />
+        <Link
+          to={{
+            pathname: `/projects/${projectId}/tasks/create`,
+            state: { projectId: project._id },
+          }}
+        >
+          <button>Create Task</button>
+        </Link>
 
-      <CommentForm user={user} projectId={project} onSubmit={addComment} />
-      <ul>
-        {comments.map(
-          (c, idx) =>
-            project._id == c.project &&
-            (user._id == c.user ? (
-              <li key={idx}>
-                <Link to={`/comments/${c._id}`}>
-                  <p>{c.text}</p>
-                </Link>
-              </li>
-            ) : (
-              <p key={idx}>{c.text}</p>
-            ))
-        )}
-      </ul>
+        <TaskIndex project={project} />
+
+        <CommentForm user={user} projectId={project} onSubmit={addComment} />
+        <ul>
+          {comments.map(
+            (c, idx) =>
+              project._id == c.project &&
+              (user._id == c.user ? (
+                <li key={idx}>
+                  <Link to={`/comments/${c._id}`}>
+                    <p>{c.text}</p>
+                  </Link>
+                </li>
+              ) : (
+                <p key={idx}>{c.text}</p>
+              ))
+          )}
+        </ul>
+      </div>
     </>
   );
 }
