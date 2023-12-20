@@ -13,7 +13,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
     deadline: defaultDate,
     description: "",
     stage: "In Progress",
-    project: projectId ? projectId._id : null,
+    project: projectId,
   });
 
   // Handle input changes
@@ -22,7 +22,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
     setFormData({
       ...formData,
       [name]: value,
-      project: projectId ? projectId._id : null,
+      project: projectId 
     });
   };
 
@@ -33,7 +33,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
   const newTask = await tasksAPI.createTask(formData);
     onSubmit(newTask);
 
-    navigate(`/projects/${projectId}?taskId=${newTask._id}`);
+    navigate(`/projects/${projectId}`);
 
     // Reset form fields after submission
     setFormData({
@@ -42,17 +42,15 @@ const TaskForm = ({ onSubmit, projectId }) => {
         deadline: defaultDate,
         description: '',
         stage: 'To Do',
-        project: projectId ? projectId._id : null,
+        project: projectId 
     });
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <label>Title:</label>
       <input
         type="text"
         name="title"
-        // value={formData.title}
         onChange={handleInputChange}
         required
       />
@@ -61,7 +59,6 @@ const TaskForm = ({ onSubmit, projectId }) => {
       <input
         type="date"
         name="dateAssigned"
-        // value={formData.dateAssigned}
         onChange={handleInputChange}
         required
       />
@@ -70,7 +67,6 @@ const TaskForm = ({ onSubmit, projectId }) => {
       <input
         type="date"
         name="deadline"
-        // value={formData.deadline}
         onChange={handleInputChange}
         required
       />
@@ -78,7 +74,6 @@ const TaskForm = ({ onSubmit, projectId }) => {
       <label>Description:</label>
       <textarea
         name="description"
-        // value={formData.description}
         onChange={handleInputChange}
         required
       ></textarea>

@@ -29,12 +29,11 @@ const taskSchema = new Schema({
         ref: 'User',
       },
     ],
-    project: [
+    project: 
       {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Project'
       },
-    ]
   }, {
     timestamps: true
   });

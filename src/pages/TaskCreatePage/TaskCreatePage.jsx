@@ -21,7 +21,7 @@ export default function TaskCreatePage() {
     }, []);
     return (
         <>
-        <h1>Task Create Page</h1>
+        <h1> Create Task </h1>
         <TaskForm projectId={projectId} onSubmit={addTask} /> 
         </>
     )
