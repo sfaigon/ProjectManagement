@@ -18,7 +18,7 @@ function checkToken(req, res) {
 
 async function create(req, res) {
   try {
-    // Add the user to the db
+
     const user = await User.create(req.body);
     const token = createJWT(user);
     res.json(token);
@@ -45,11 +45,11 @@ async function index(req, res) {
   res.json(users);
 }
 
-/*--- Helper Functions --*/
+
 
 function createJWT(user) {
   return jwt.sign(
-    // data payload
+
     { user },
     process.env.SECRET,
     { expiresIn: "24h" }

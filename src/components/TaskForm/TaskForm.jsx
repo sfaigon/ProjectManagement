@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import * as usersAPI from "../../utilities/users-api";
 import Select from "react-select";
 
-// default date for form fields
+
 const defaultDate = new Date();
 
 const TaskForm = ({ onSubmit, projectId }) => {
   const navigate = useNavigate();
-  // Manage form fields
+
   const [formData, setFormData] = useState({
     title: "",
     dateAssigned: defaultDate,
@@ -20,7 +20,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
     users: []
   });
 
-  // Handle input changes
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -30,7 +30,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
     });
   };
 
-  // Handles form submission
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
 
     navigate(`/projects/${projectId}`);
 
-    // Reset form fields after submission
+
     setFormData({
         title: '',
         dateAssigned: defaultDate,

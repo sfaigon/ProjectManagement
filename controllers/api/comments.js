@@ -21,7 +21,6 @@ async function create(req, res) {
 
 async function index(req, res) {
   try {
-    // const allComments = await Comment.find({ project: req.body.project });
     const allComments = await Comment.find({}).populate("user");
     console.log("index", allComments);
     res.json(allComments);

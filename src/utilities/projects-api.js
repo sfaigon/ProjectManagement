@@ -18,9 +18,6 @@ export async function getAll() {
   return sendRequest(BASE_URL);
 }
 
-// export async function getOne(projectData) {
-//   return sendRequest(`${BASE_URL}/${projectData}`, "GET");
-// }
 
 export function getById(id) {
   return sendRequest(`${BASE_URL}/${id}`, "GET");
