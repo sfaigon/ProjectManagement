@@ -19,18 +19,20 @@ export default function TaskIndex({ project }) {
   return (
     <>
       <h1>Tasks for {project.name} </h1>
-      <ul>
-        {tasks.map(
-          (task, index) =>
-            project._id == task.project && (
-              <li key={index}>
-                <Link to={`/tasks/${task._id}`}>
-                  <p>{task.title}</p>
-                </Link>
-              </li>
-            )
-        )}
-      </ul>
+      <div className="plp-task-list">
+        <ul>
+          {tasks.map(
+            (task, index) =>
+              project._id == task.project && (
+                <li key={index} className="plp-task">
+                  <Link to={`/tasks/${task._id}`}>
+                    <p>{task.title}</p>
+                  </Link>
+                </li>
+              )
+          )}
+        </ul>
+      </div>
     </>
   );
 }
