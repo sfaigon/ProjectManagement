@@ -24,7 +24,7 @@ const CommentForm = ({ onSubmit, projectId, user }) => {
     onSubmit(newComment);
 
     setFormData({
-      text: " ",
+      text: "",
       user: user._id,
       project: projectId._id,
     });

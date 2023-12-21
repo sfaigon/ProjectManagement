@@ -17,19 +17,21 @@ export default function ProjectShowPage({ user }) {
   const [project, setProject] = useState({});
   const [teamMembers, setTeamMembers] = useState([]);
 
-  useEffect (function () {
-    async function fetchNames() {
-      const names = project.teamMembers.map(async (userId) => {
-        const user = await usersAPI.getById(userId);
-        return user.name; 
-      });
-      const team = await Promise.all(names);
-      setTeamMembers(team);
-    }
-    fetchNames();
-  }, [project.teamMembers]); 
-  console.log(teamMembers);
-  
+  useEffect(
+    function () {
+      async function fetchNames() {
+        const names = project.teamMembers.map(async (userId) => {
+          const user = await usersAPI.getById(userId);
+          return user.name;
+        });
+        const team = await Promise.all(names);
+        setTeamMembers(team);
+      }
+      fetchNames();
+    },
+    [project.teamMembers]
+  );
+
   useEffect(function () {
     async function fetchProject() {
       const fetchedProject = await projectsAPI.getById(projectId);
@@ -64,14 +66,21 @@ export default function ProjectShowPage({ user }) {
     }
   };
   const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'numeric', year: 'numeric'};
-    return new Date(dateString).toLocaleDateString('en-GB', options);
+    const options = { day: "numeric", month: "numeric", year: "numeric" };
+    return new Date(dateString).toLocaleDateString("en-GB", options);
   };
 
   if (!projectId) {
     return <p>No Project Info</p>;
   }
-  console.log(teamMembers)
+
+  async function getUserName(userId) {
+    const currentUser = await usersAPI.getById(userId);
+    return currentUser.name;
+  }
+ 
+
+  // printUser();
   return (
     <>
       <div className="container">
@@ -85,38 +94,32 @@ export default function ProjectShowPage({ user }) {
           <p>Date Created: {formatDate(project.dateCreated)}</p>
         </div>
         <div>
-          <p>Team Members: {teamMembers.join(', ')}</p>
+          <p>Team Members: {teamMembers.join(", ")}</p>
         </div>
-        
 
         {project.user == user._id && (
           <>
-        <Link to={`/projects/${projectId}/edit`}>
-          <Button variant="contained">Update</Button>
-        </Link>
-        <Button
-          className="delete-btn"
-          variant="contained"
-          onClick={handleDelete}
-        >
-          Delete Project
-        </Button>
-        <br />
-        <Link
-          to={{
-            pathname: `/projects/${projectId}/tasks/create`,
-            state: { projectId: project._id },
-          }}
-        >
-          <button>Create Task</button>
-        </Link>
+            <Link to={`/projects/${projectId}/edit`}>
+              <Button variant="contained">Update</Button>
+            </Link>
+            <Button
+              className="delete-btn"
+              variant="contained"
+              onClick={handleDelete}
+            >
+              Delete Project
+            </Button>
+            <br />
+            <Link
+              to={{
+                pathname: `/projects/${projectId}/tasks/create`,
+                state: { projectId: project._id },
+              }}
+            >
+              <button>Create Task</button>
+            </Link>
           </>
-        )
-
-        }
-
-
-
+        )}
 
         <TaskIndex project={project} />
 
@@ -128,11 +131,15 @@ export default function ProjectShowPage({ user }) {
               (user._id == c.user ? (
                 <li key={idx}>
                   <Link to={`/comments/${c._id}`}>
-                    <p>{c.text}</p>
+                    <p>
+                      {c.user.name}: {c.text}
+                    </p>
                   </Link>
                 </li>
               ) : (
-                <p key={idx}>{c.text}</p>
+                <p key={idx}>
+                  {c.user.name}: {c.text}
+                </p>
               ))
           )}
         </ul>
