@@ -7,6 +7,7 @@ import * as usersAPI from "../../utilities/users-api";
 import CommentForm from "../../components/CommentForm/CommentForm";
 import TaskIndex from "../../components/TaskIndex/TaskIndex";
 import "./ProjectShowPage.css";
+import Button from "@mui/material/Button";
 
 export default function ProjectShowPage({ user }) {
   const location = useLocation();
@@ -148,8 +149,8 @@ export default function ProjectShowPage({ user }) {
             </div>
           </div>
         </div>
-        <div>
-          <h1>{project.name}</h1>
+        {/* <div> */}
+          {/* <h1>{project.name}</h1>
         </div>
         <div>
           <p>Created By: {projectUser.name}</p>
@@ -206,4 +207,4 @@ export default function ProjectShowPage({ user }) {
       </div>
     </>
   );
-}
+} */}
