@@ -132,7 +132,7 @@ export default function ProjectShowPage({ user }) {
                     {comments.map(
                       (c, idx) =>
                         project._id == c.project &&
-                        (user._id == c.user ? (
+                        (user._id == c.user._id ? (
                           <div
                             className="comments"
                             style={{
