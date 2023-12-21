@@ -71,7 +71,7 @@ const TaskForm = ({ onSubmit, projectId }) => {
       users: selectedUserIds,
     });
   };
-
+  console.log(projectId);
   return (
     <form onSubmit={handleSubmit}>
       <label>Title:</label>
@@ -117,7 +117,10 @@ const TaskForm = ({ onSubmit, projectId }) => {
         name="users"
         onChange={handleChanges}
         isMulti
-        options={users.map((u) => ({ value: u._id, label: u.name }))}
+        options={users.map((u) => (
+          
+          { value: u._id, label: u.name }
+          ))}
       />
 
 

@@ -78,7 +78,7 @@ export default function ProjectShowPage({ user }) {
     return currentUser.name;
   }
 
-  // printUser();
+ 
   return (
     <>
       <div className="container">

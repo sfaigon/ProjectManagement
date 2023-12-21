@@ -6,7 +6,6 @@ import { useLocation, useParams } from 'react-router-dom';
 export default function TaskCreatePage() {
     const { projectId } = useParams();
     const [tasks, setTasks] = useState([]);
-    console.log(projectId)
     function addTask(newTask) {
         setTasks([...tasks, newTask]);
     }
@@ -14,7 +13,6 @@ export default function TaskCreatePage() {
     useEffect(function() {
         async function getTasks() {
             const tasks = await tasksAPI.getById(projectId);
-            console.log(tasks)
             setTasks(tasks);
         }
         getTasks();

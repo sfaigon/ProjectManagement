@@ -23,7 +23,6 @@ const ProjectForm = ({ onsubmit }) => {
     console.log("submitting");
     e.preventDefault();
     onsubmit(formData);
-    console.log(formData);
     setFormData({
       name: "",
       dateCreated: defaultDate,

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as projectsAPI from "../../utilities/projects-api";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+import * as usersAPI from "../../utilities/users-api";
 
 const UpdateProjectForm = ({ project, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -20,6 +22,26 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
       [name]: value,
     });
   };
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function getUsers() {
+      const users = await usersAPI.getAll();
+      setUsers(users);
+    }
+
+    getUsers();
+  }, []);
+
+  const handleChanges = (selectedOptions) => {
+    const selectedUserIds = selectedOptions.map((option) => option.value);
+
+    setFormData({
+      ...formData,
+      teamMembers: selectedUserIds,
+    });
+  };
+
 
   
 
@@ -31,7 +53,6 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
         formData
       );
       onSubmit(updateProject);
-      console.log("submitted");
 
       navigate(`/projects/${updateProject._id}`);
     } catch (error) {
@@ -63,31 +84,16 @@ const UpdateProjectForm = ({ project, onSubmit }) => {
       </div>
       <div>
         <label>Team Members:</label>
-        <input
-          type="text"
-          name="teamMembers"
-          value={formData.teamMembers}
-          onChange={handleInputChange}
-        />
+      
+         <Select
+        name="teamMembers"
+        onChange={handleChanges}
+        isMulti
+        options={users.map((u) => ({ value: u._id, label: u.name }))}
+      />
       </div>
-      <div>
-        <label>Tasks:</label>
-        <input
-          type="text"
-          name="tasks"
-          value={formData.tasks}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label>Comments:</label>
-        <input
-          type="text"
-          name="comments"
-          value={formData.comments}
-          onChange={handleInputChange}
-        />
-      </div>
+     
+      
       <div>
         <button type="submit">Save Changes</button>
       </div>

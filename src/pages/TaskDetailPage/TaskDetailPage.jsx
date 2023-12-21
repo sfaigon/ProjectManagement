@@ -63,7 +63,7 @@ export default function TaskDetailPage({ user }) {
         <p><strong>Stage:</strong> {task.stage}</p>
         <p><strong>Task Members:</strong> {taskMembers.join(', ')}</p>
 
-        {task.users == user._id && (
+        {((task.users == user._id)||user._id == task.user) && (
         <>
         <Link to={`/tasks/${id}/edit`}>
           <button>Edit Task</button>
