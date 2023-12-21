@@ -73,10 +73,6 @@ export default function ProjectShowPage({ user }) {
     return <p>No Project Info</p>;
   }
 
-  async function getUserName(userId) {
-    const currentUser = await usersAPI.getById(userId);
-    return currentUser.name;
-  }
 
  
   return (
