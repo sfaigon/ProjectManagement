@@ -4,7 +4,7 @@ import * as usersAPI from "../../utilities/users-api";
 
 const defaultDate = new Date();
 
-const ProjectForm = ({ onsubmit }) => {
+const ProjectForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     name: "",
     dateCreated: defaultDate,
@@ -22,7 +22,7 @@ const ProjectForm = ({ onsubmit }) => {
   const handleSubmit = (e) => {
     console.log("submitting");
     e.preventDefault();
-    onsubmit(formData);
+    onSubmit(formData);
     setFormData({
       name: "",
       dateCreated: defaultDate,

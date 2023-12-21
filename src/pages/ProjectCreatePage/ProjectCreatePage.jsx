@@ -13,7 +13,7 @@ export default function ProjectCreatePage() {
   return (
     <>
       <h1>Project Create Page</h1>
-      <ProjectForm onsubmit={handleSubmit} />
+      <ProjectForm onSubmit={handleSubmit} />
     </>
   );
 }
