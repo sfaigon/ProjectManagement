@@ -71,7 +71,6 @@ const TaskForm = ({ onSubmit, projectId }) => {
       users: selectedUserIds,
     });
   };
-  console.log(projectId);
   return (
     <form onSubmit={handleSubmit}>
       <label>Title:</label>

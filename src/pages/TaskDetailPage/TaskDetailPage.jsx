@@ -21,8 +21,6 @@ export default function TaskDetailPage({ user }) {
     }
     fetchNames();
   }, [task.users]); 
-  console.log(taskMembers)
-  console.log(task.users)
   useEffect(() => {
     async function getTaskDetails() {
         try {
