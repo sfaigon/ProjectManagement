@@ -111,7 +111,7 @@ export default function ProjectShowPage({ user }) {
             <div className="task-comment">
               <div className="task-container">
                 <TaskIndex project={project} />
-
+              {}
                 <Link
                   to={{
                     pathname: `/projects/${projectId}/tasks/create`,
@@ -120,6 +120,7 @@ export default function ProjectShowPage({ user }) {
                 >
                   <button>Create Task</button>
                 </Link>
+
               </div>
               <div className="comment-container">
                 <CommentForm
