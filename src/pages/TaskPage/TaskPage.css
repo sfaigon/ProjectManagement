@@ -1,0 +1,27 @@
+.tasklist-container {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  height: 80vh;
+  width: 80vw;
+  background-color: rgba(235, 245, 245, 0.871);
+}
+
+.title {
+  border: 1px solid black;
+  border-radius: 10px 10px 0px 0px;
+  margin-bottom: 5px;
+}
+
+.task {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+:nth-child(even of li.task) {
+  background-color: lightgray;
+}
+
+:nth-child(odd of li.task) {
+  background-color: aliceblue;
+}
