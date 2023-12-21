@@ -31,4 +31,6 @@
 
 <h2>Next Steps</h2>
 <p>Some next steps that we are planning to make are adding the live chat feature for the project so users can better collarborate. We also will add comments to the task for th projects as well.</p>
-<a href="https://project-management-a-5ace3a71eb34.herokuapp.com/" ><h2>Deployment Link</h2></a>
+
+<h2>Deployment Link</h2>
+<a href="https://project-management-a-5ace3a71eb34.herokuapp.com/" >Project Management</a>
