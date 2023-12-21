@@ -77,7 +77,6 @@ export default function ProjectShowPage({ user }) {
     const currentUser = await usersAPI.getById(userId);
     return currentUser.name;
   }
- 
 
   // printUser();
   return (
@@ -142,12 +141,16 @@ export default function ProjectShowPage({ user }) {
                           >
                             <li key={idx}>
                               <Link to={`/comments/${c._id}`}>
-                                <p>{c.text}</p>
+                                <p>
+                                  {c.user.name}: {c.text}
+                                </p>
                               </Link>
                             </li>
                           </div>
                         ) : (
-                          <p key={idx}>{c.text}</p>
+                          <p key={idx}>
+                            {c.user.name}: {c.text}
+                          </p>
                         ))
                     )}
                   </ul>
