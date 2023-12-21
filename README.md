@@ -6,9 +6,11 @@
 <h2>Planning Material<h2>
 
 <p> Trello Board </p>
+
 ![image](trello.png)
 
 <p>ERD</p>
+
 ![image](erd.png)
 
 
