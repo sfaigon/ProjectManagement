@@ -71,13 +71,6 @@ const ProjectForm = ({ onSubmit }) => {
       />
 
       <label>Assign To:</label>
-      {/* <input
-        type="select"
-        name="teamMembers"
-        value={formData.teamMembers}
-        onChange={handleChange}
-      /> */}
-
       <Select
         name="teamMembers"
         onChange={handleChanges}
