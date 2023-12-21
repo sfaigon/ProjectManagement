@@ -16,17 +16,17 @@
 
 <h2>App Pages</h2>
 
-![image](Home.png)
+![image](Home-1.png)
 
-![image](projectpage1.png)
+![image](projectpage1-1.png)
 
-![image](projectpage2.png)
+![image](projectpage2-1.png)
 
-![image](projectdetail.png)
+![image](projectdetail-1.png)
 
-![image](tasks.png)
+![image](tasks-1.png)
 
-![image](taskdetail.png)
+![image](taskdetail-1.png)
 
 <h2>Technologies Used</h2>
 
